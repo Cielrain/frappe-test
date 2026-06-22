@@ -1,0 +1,18 @@
+[project]
+name = "growth_insights"
+version = "0.1.0"
+description = "Frappe app for user lifecycle events, growth reporting, and executive dashboard."
+authors = [
+    { name = "Growth Insights Team", email = "hello@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "frappe"
+]
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.dev-dependencies]

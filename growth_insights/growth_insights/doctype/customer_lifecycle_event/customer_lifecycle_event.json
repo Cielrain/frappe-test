@@ -1,0 +1,191 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "format:CLE-{YYYY}-{#####}",
+ "creation": "2026-06-22 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "event_section",
+  "customer_id",
+  "customer_name",
+  "event_type",
+  "event_date",
+  "customer_segment",
+  "plan",
+  "mrr",
+  "seats",
+  "geography_section",
+  "region",
+  "city",
+  "industry",
+  "channel",
+  "health_score",
+  "churn_section",
+  "churn_reason",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "event_section",
+   "fieldtype": "Section Break",
+   "label": "Lifecycle Event"
+  },
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Event Type",
+   "options": "Signup\nActivation\nExpansion\nChurn\nReactivation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Event Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer_segment",
+   "fieldtype": "Select",
+   "label": "Customer Segment",
+   "options": "Startup\nSMB\nMid-Market\nEnterprise",
+   "reqd": 1
+  },
+  {
+   "fieldname": "plan",
+   "fieldtype": "Select",
+   "label": "Plan",
+   "options": "Free\nStarter\nGrowth\nBusiness\nEnterprise",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mrr",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "MRR",
+   "precision": "2"
+  },
+  {
+   "fieldname": "seats",
+   "fieldtype": "Int",
+   "label": "Seats"
+  },
+  {
+   "fieldname": "geography_section",
+   "fieldtype": "Section Break",
+   "label": "Geography and Acquisition"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "label": "Region",
+   "options": "North China\nEast China\nSouth China\nWest China\nAPAC\nEurope\nNorth America",
+   "reqd": 1
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "industry",
+   "fieldtype": "Select",
+   "label": "Industry",
+   "options": "SaaS\nE-commerce\nManufacturing\nEducation\nFinTech\nHealthcare\nMedia\nLogistics",
+   "reqd": 1
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Select",
+   "label": "Acquisition Channel",
+   "options": "Organic\nPaid Search\nPartner\nReferral\nOutbound\nEvent\nMarketplace",
+   "reqd": 1
+  },
+  {
+   "fieldname": "health_score",
+   "fieldtype": "Percent",
+   "label": "Health Score"
+  },
+  {
+   "fieldname": "churn_section",
+   "fieldtype": "Section Break",
+   "label": "Churn Details"
+  },
+  {
+   "depends_on": "eval:doc.event_type == 'Churn'",
+   "fieldname": "churn_reason",
+   "fieldtype": "Select",
+   "label": "Churn Reason",
+   "options": "\nPrice\nMissing Feature\nLow Usage\nCompetitor\nBusiness Closed\nPayment Failed\nUnknown"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-22 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Growth Insights",
+ "name": "Customer Lifecycle Event",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1
+  }
+ ],
+ "sort_field": "event_date",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

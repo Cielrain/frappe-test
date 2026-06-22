@@ -1,0 +1,6 @@
+include README.md
+recursive-include growth_insights *.json
+recursive-include growth_insights *.py
+recursive-include growth_insights *.js
+recursive-include growth_insights *.css
+recursive-include growth_insights *.txt

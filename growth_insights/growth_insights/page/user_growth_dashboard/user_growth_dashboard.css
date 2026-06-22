@@ -1,0 +1,238 @@
+.layout-main-section .growth-dashboard-shell,
+.growth-dashboard-shell {
+    background: #071013;
+}
+
+.growth-dashboard {
+    min-height: calc(100vh - 120px);
+    padding: 24px;
+    color: #e7f8f5;
+    background:
+        linear-gradient(90deg, rgba(45, 212, 191, 0.10), transparent 42%, rgba(56, 189, 248, 0.08)),
+        linear-gradient(135deg, #071013 0%, #0d1f24 48%, #111827 100%);
+}
+
+.growth-hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.growth-kicker,
+.growth-hero p,
+.growth-clock span,
+.growth-panel header span,
+.growth-kpi em,
+.growth-bar-label span,
+.growth-event small {
+    color: #9cc9c4;
+}
+
+.growth-kicker {
+    margin: 0 0 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+.growth-hero h1 {
+    margin: 0;
+    font-size: 40px;
+    line-height: 1.1;
+    color: #f8fffd;
+}
+
+.growth-clock {
+    min-width: 220px;
+    padding: 14px 16px;
+    border: 1px solid rgba(148, 216, 207, 0.22);
+    background: rgba(7, 16, 19, 0.64);
+    border-radius: 8px;
+    text-align: right;
+}
+
+.growth-clock strong {
+    display: block;
+    margin-top: 4px;
+    color: #f8fffd;
+}
+
+.growth-kpis,
+.growth-main-grid,
+.growth-lower-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.growth-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 16px;
+}
+
+.growth-kpi,
+.growth-panel {
+    border: 1px solid rgba(148, 216, 207, 0.18);
+    border-radius: 8px;
+    background: rgba(9, 30, 35, 0.72);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
+}
+
+.growth-kpi {
+    padding: 18px;
+}
+
+.growth-kpi span,
+.growth-kpi em {
+    display: block;
+    font-style: normal;
+}
+
+.growth-kpi strong {
+    display: block;
+    margin: 8px 0;
+    font-size: 30px;
+    line-height: 1.1;
+    color: #f8fffd;
+}
+
+.growth-main-grid {
+    grid-template-columns: 2fr 1fr;
+    margin-bottom: 16px;
+}
+
+.growth-lower-grid {
+    grid-template-columns: 1fr 1fr 1.25fr;
+}
+
+.growth-panel {
+    min-height: 320px;
+    padding: 18px;
+}
+
+.growth-panel header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    margin-bottom: 16px;
+}
+
+.growth-panel h2 {
+    margin: 0;
+    font-size: 17px;
+    color: #f8fffd;
+}
+
+.growth-chart {
+    min-height: 280px;
+}
+
+.growth-bars {
+    display: grid;
+    gap: 14px;
+}
+
+.growth-bars.compact {
+    gap: 12px;
+}
+
+.growth-bar-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+
+.growth-bar-label strong {
+    color: #f8fffd;
+}
+
+.growth-bar-track {
+    height: 9px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(148, 216, 207, 0.16);
+}
+
+.growth-bar-track i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #2dd4bf, #38bdf8);
+}
+
+.growth-events {
+    display: grid;
+    gap: 10px;
+}
+
+.growth-event {
+    display: grid;
+    grid-template-columns: 94px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(148, 216, 207, 0.12);
+}
+
+.growth-event strong,
+.growth-event small {
+    display: block;
+}
+
+.growth-event-type {
+    padding: 5px 8px;
+    border-radius: 999px;
+    text-align: center;
+    font-size: 12px;
+    color: #061113;
+    background: #67e8f9;
+}
+
+.growth-event-type.churn {
+    background: #fb7185;
+}
+
+.growth-event-type.expansion {
+    background: #86efac;
+}
+
+.growth-empty {
+    color: #9cc9c4;
+}
+
+@media (max-width: 1100px) {
+    .growth-kpis,
+    .growth-main-grid,
+    .growth-lower-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .growth-dashboard {
+        padding: 16px;
+    }
+
+    .growth-hero,
+    .growth-panel header {
+        display: block;
+    }
+
+    .growth-hero h1 {
+        font-size: 30px;
+    }
+
+    .growth-clock {
+        margin-top: 16px;
+        text-align: left;
+    }
+
+    .growth-kpis,
+    .growth-main-grid,
+    .growth-lower-grid {
+        grid-template-columns: 1fr;
+    }
+}
