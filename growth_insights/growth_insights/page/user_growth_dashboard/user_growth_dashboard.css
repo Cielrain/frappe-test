@@ -8,8 +8,8 @@
     padding: 24px;
     color: #e7f8f5;
     background:
-        linear-gradient(90deg, rgba(45, 212, 191, 0.10), transparent 42%, rgba(56, 189, 248, 0.08)),
-        linear-gradient(135deg, #071013 0%, #0d1f24 48%, #111827 100%);
+        linear-gradient(90deg, rgba(45, 212, 191, 0.08), transparent 42%, rgba(250, 204, 21, 0.06)),
+        linear-gradient(135deg, #071013 0%, #102326 48%, #161b22 100%);
 }
 
 .growth-hero {
@@ -23,10 +23,14 @@
 .growth-kicker,
 .growth-hero p,
 .growth-clock span,
+.growth-mode-switch button,
 .growth-panel header span,
+.growth-insight span,
+.growth-insight em,
 .growth-kpi em,
 .growth-bar-label span,
-.growth-event small {
+.growth-event small,
+.growth-matrix-note {
     color: #9cc9c4;
 }
 
@@ -53,6 +57,38 @@
     text-align: right;
 }
 
+.growth-hero-side {
+    display: grid;
+    gap: 12px;
+    justify-items: end;
+}
+
+.growth-mode-switch {
+    display: inline-grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid rgba(148, 216, 207, 0.20);
+    border-radius: 8px;
+    background: rgba(7, 16, 19, 0.54);
+}
+
+.growth-mode-switch button {
+    min-width: 86px;
+    height: 32px;
+    border: 0;
+    border-radius: 6px;
+    color: #b9ded9;
+    background: transparent;
+    cursor: pointer;
+}
+
+.growth-mode-switch button:hover,
+.growth-mode-switch button.is-active {
+    color: #061113;
+    background: #67e8f9;
+}
+
 .growth-clock strong {
     display: block;
     margin-top: 4px;
@@ -69,6 +105,54 @@
 .growth-kpis {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-bottom: 16px;
+}
+
+.growth-insight-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.growth-insight {
+    min-height: 112px;
+    padding: 16px;
+    border: 1px solid rgba(148, 216, 207, 0.18);
+    border-radius: 8px;
+    background: rgba(9, 30, 35, 0.58);
+    cursor: pointer;
+    transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.growth-insight:hover {
+    transform: translateY(-2px);
+}
+
+.growth-insight.is-primary {
+    border-color: rgba(250, 204, 21, 0.72);
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(20, 184, 166, 0.10));
+}
+
+.growth-insight span,
+.growth-insight strong,
+.growth-insight em {
+    display: block;
+}
+
+.growth-insight span {
+    margin-bottom: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.growth-insight strong {
+    margin-bottom: 8px;
+    color: #f8fffd;
+}
+
+.growth-insight em {
+    font-style: normal;
+    line-height: 1.35;
 }
 
 .growth-kpi,
@@ -117,12 +201,55 @@
 }
 
 .growth-lower-grid {
-    grid-template-columns: 1fr 1fr 1.25fr;
+    grid-template-columns: 1fr 1fr 1fr 1.25fr;
 }
 
 .growth-panel {
     min-height: 320px;
     padding: 18px;
+}
+
+.growth-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.growth-matrix button {
+    min-height: 74px;
+    padding: 12px;
+    border: 1px solid rgba(148, 216, 207, 0.18);
+    border-radius: 8px;
+    color: #e7f8f5;
+    background: rgba(7, 16, 19, 0.42);
+    cursor: pointer;
+    text-align: left;
+}
+
+.growth-matrix button:hover,
+.growth-matrix button.is-selected {
+    border-color: rgba(250, 204, 21, 0.76);
+    background: rgba(250, 204, 21, 0.13);
+}
+
+.growth-matrix strong,
+.growth-matrix span {
+    display: block;
+}
+
+.growth-matrix strong {
+    margin-bottom: 6px;
+    font-size: 20px;
+    color: #facc15;
+}
+
+.growth-matrix span {
+    color: #b9ded9;
+}
+
+.growth-matrix-note {
+    margin: 14px 0 0;
+    line-height: 1.35;
 }
 
 .growth-panel header {
@@ -227,6 +354,7 @@
 
 @media (max-width: 1100px) {
     .growth-kpis,
+    .growth-insight-strip,
     .growth-main-grid,
     .growth-lower-grid {
         grid-template-columns: 1fr 1fr;
@@ -243,6 +371,11 @@
         display: block;
     }
 
+    .growth-hero-side {
+        justify-items: start;
+        margin-top: 16px;
+    }
+
     .growth-hero h1 {
         font-size: 30px;
     }
@@ -253,8 +386,17 @@
     }
 
     .growth-kpis,
+    .growth-insight-strip,
     .growth-main-grid,
     .growth-lower-grid {
         grid-template-columns: 1fr;
+    }
+
+    .growth-mode-switch {
+        width: 100%;
+    }
+
+    .growth-mode-switch button {
+        min-width: 0;
     }
 }

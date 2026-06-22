@@ -14,9 +14,16 @@ frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
                     <h1>${__("Zhige Energy Operations Dashboard")}</h1>
                     <p class="growth-period"></p>
                 </div>
-                <div class="growth-clock">
-                    <span>${__("Live Operations Snapshot")}</span>
-                    <strong></strong>
+                <div class="growth-hero-side">
+                    <div class="growth-mode-switch" aria-label="${__("Dashboard mode")}">
+                        <button class="is-active" data-mode="overview">${__("Overview")}</button>
+                        <button data-mode="risk">${__("Risk")}</button>
+                        <button data-mode="expansion">${__("Expansion")}</button>
+                    </div>
+                    <div class="growth-clock">
+                        <span>${__("Live Operations Snapshot")}</span>
+                        <strong></strong>
+                    </div>
                 </div>
             </section>
 
@@ -28,6 +35,24 @@ frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
                         <em></em>
                     </article>
                 `).join("")}
+            </section>
+
+            <section class="growth-insight-strip">
+                <article class="growth-insight is-primary" data-insight="coverage">
+                    <span>${__("Coverage Signal")}</span>
+                    <strong>${__("Hangzhou Core leads utilization")}</strong>
+                    <em>${__("Prioritize cabinet replenishment around high-frequency delivery zones.")}</em>
+                </article>
+                <article class="growth-insight" data-insight="risk">
+                    <span>${__("Churn Signal")}</span>
+                    <strong>${__("Station distance is the first risk")}</strong>
+                    <em>${__("Route low-health accounts to nearby stations before they churn.")}</em>
+                </article>
+                <article class="growth-insight" data-insight="growth">
+                    <span>${__("Expansion Signal")}</span>
+                    <strong>${__("Fleet contracts drive revenue")}</strong>
+                    <em>${__("Add swap quota before peak delivery windows to capture demand.")}</em>
+                </article>
             </section>
 
             <section class="growth-main-grid">
@@ -61,6 +86,21 @@ frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
                         <span>${__("Revenue by rider, fleet, and station account")}</span>
                     </header>
                     <div class="growth-bars compact" data-list="segments"></div>
+                </article>
+                <article class="growth-panel growth-matrix-panel">
+                    <header>
+                        <h2>${__("Network Readiness")}</h2>
+                        <span>${__("Capacity, demand, and service stability")}</span>
+                    </header>
+                    <div class="growth-matrix">
+                        <button data-score="96"><strong>HZ</strong><span>${__("High demand")}</span></button>
+                        <button data-score="88"><strong>NB</strong><span>${__("Stable")}</span></button>
+                        <button data-score="82"><strong>YW</strong><span>${__("Fleet lift")}</span></button>
+                        <button data-score="76"><strong>WZ</strong><span>${__("Coverage gap")}</span></button>
+                        <button data-score="71"><strong>SH</strong><span>${__("Churn watch")}</span></button>
+                        <button data-score="68"><strong>JS</strong><span>${__("Ramp up")}</span></button>
+                    </div>
+                    <p class="growth-matrix-note">${__("Click a territory tile to mark it for operations review.")}</p>
                 </article>
                 <article class="growth-panel">
                     <header>
@@ -139,7 +179,7 @@ function render_bars(container, rows, label_key, value_key, sub_key) {
             <div class="growth-bar-row">
                 <div class="growth-bar-label">
                     <strong>${frappe.utils.escape_html(item[label_key] || __("Unknown"))}</strong>
-                    <span>${value} · ${sub}</span>
+                    <span>${value} | ${sub}</span>
                 </div>
                 <div class="growth-bar-track"><i style="width:${width}%"></i></div>
             </div>
@@ -153,7 +193,7 @@ function render_events(container, events) {
             <span class="growth-event-type ${String(event.event_type || "").toLowerCase()}">${frappe.utils.escape_html(event.event_type || "")}</span>
             <div>
                 <strong>${frappe.utils.escape_html(event.customer_name || "")}</strong>
-                <small>${frappe.datetime.str_to_user(event.event_date)} · ${frappe.utils.escape_html(event.region || "")} · ${format_currency(event.mrr || 0)}</small>
+                <small>${frappe.datetime.str_to_user(event.event_date)} | ${frappe.utils.escape_html(event.region || "")} | ${format_currency(event.mrr || 0)}</small>
             </div>
         </div>
     `).join("") || `<p class="growth-empty">${__("No lifecycle events yet")}</p>`);
@@ -184,5 +224,33 @@ function bind_dashboard_interactions(root, events) {
     root.find(".growth-events").on("click", ".growth-event", function() {
         root.find(".growth-event").removeClass("is-selected");
         $(this).addClass("is-selected");
+    });
+
+    root.find(".growth-mode-switch button").on("click", function() {
+        root.find(".growth-mode-switch button").removeClass("is-active");
+        $(this).addClass("is-active");
+        const mode = $(this).data("mode");
+        root.attr("data-mode", mode);
+        if (mode === "risk") {
+            root.find('[data-kpi="logo_churn_rate"]').trigger("click");
+        } else if (mode === "expansion") {
+            root.find('[data-kpi="net_new_mrr"]').trigger("click");
+        } else {
+            root.find(".growth-kpi").removeClass("is-selected");
+            render_events(root.find(".growth-events"), events);
+        }
+    });
+
+    root.find(".growth-insight").on("click", function() {
+        root.find(".growth-insight").removeClass("is-primary");
+        $(this).addClass("is-primary");
+    });
+
+    root.find(".growth-matrix button").on("click", function() {
+        root.find(".growth-matrix button").removeClass("is-selected");
+        $(this).addClass("is-selected");
+        const territory = $(this).find("strong").text();
+        const score = $(this).data("score");
+        root.find(".growth-matrix-note").text(__("Selected for operations review: {0} readiness score {1}", [territory, score]));
     });
 }
