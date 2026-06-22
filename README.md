@@ -12,7 +12,7 @@ It delivers:
 
 ```bash
 cd frappe-bench
-bench get-app https://github.com/<your-org>/growth_insights.git
+bench get-app https://github.com/Cielrain/frappe-test.git
 bench --site <site-name> install-app growth_insights
 bench --site <site-name> migrate
 bench --site <site-name> clear-cache
@@ -39,6 +39,6 @@ git init
 git add .
 git commit -m "feat: add growth insights frappe app"
 git branch -M main
-git remote add origin https://github.com/<your-org>/growth_insights.git
+git remote add origin https://github.com/Cielrain/frappe-test.git
 git push -u origin main
 ```
