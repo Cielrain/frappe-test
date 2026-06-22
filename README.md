@@ -26,9 +26,10 @@ bench --site <site-name> execute growth_insights.install.seed_mock_data
 
 ## Use
 
-- Open **Energy Service Lifecycle Event** to inspect or edit rider, fleet, and station lifecycle records.
-- Open **User Growth Overview** from Reports.
-- Open `/app/user-growth-dashboard` for the large-screen operations dashboard page.
+- Open the **Growth Insights** workspace in Frappe Desk.
+- Use **Lifecycle Events** to inspect or edit rider, fleet, and station lifecycle records.
+- Use **Growth Report** to review monthly signup, activation, reactivation, churn, expansion, and revenue movement.
+- Use **Operations Dashboard** to open the large-screen growth dashboard.
 
 ## Development
 

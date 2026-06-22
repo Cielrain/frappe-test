@@ -129,7 +129,7 @@ async function render_dashboard(page) {
     const kpis = {
         active_customers: [__("Active Service Accounts"), data.summary?.active_customers || 0, __("Riders, fleets, and stations retained")],
         active_mrr: [__("Active Service Revenue"), format_currency(data.summary?.active_mrr || 0), __("Latest operating account state")],
-        net_new_mrr: [__("Net New Revenue"), format_currency(data.summary?.net_new_mrr || 0), __("Signup + expansion - churn")],
+        net_new_mrr: [__("Net New Revenue"), format_currency(data.summary?.net_new_mrr || 0), __("Signup + reactivation + expansion - churn")],
         logo_churn_rate: [__("Account Churn"), `${flt(data.summary?.logo_churn_rate || 0, 1)}%`, __("Service loss pressure")]
     };
 
@@ -153,7 +153,8 @@ function render_monthly_chart(rows) {
     const chart_data = {
         labels,
         datasets: [
-            { name: __("New Accounts"), chartType: "bar", values: rows.map((item) => item.new_customers || 0) },
+            { name: __("New Signups"), chartType: "bar", values: rows.map((item) => item.new_customers || 0) },
+            { name: __("Reactivations"), chartType: "bar", values: rows.map((item) => item.reactivations || 0) },
             { name: __("Churn"), chartType: "bar", values: rows.map((item) => item.churned_customers || 0) },
             { name: __("Net MRR"), chartType: "line", values: rows.map((item) => item.net_mrr || 0) }
         ]
@@ -163,7 +164,7 @@ function render_monthly_chart(rows) {
         data: chart_data,
         type: "axis-mixed",
         height: 280,
-        colors: ["#4ade80", "#fb7185", "#38bdf8"],
+        colors: ["#4ade80", "#22c55e", "#fb7185", "#38bdf8"],
         axisOptions: { xIsSeries: true },
         barOptions: { stacked: false }
     });

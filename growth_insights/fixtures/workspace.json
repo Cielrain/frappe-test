@@ -1,0 +1,101 @@
+[
+ {
+  "charts": [],
+  "content": "[{\"id\":\"growth_header\",\"type\":\"header\",\"data\":{\"text\":\"Zhige Energy Ops\"}},{\"id\":\"growth_shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lifecycle Events\"}},{\"id\":\"growth_report\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Growth Report\"}},{\"id\":\"growth_dashboard\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operations Dashboard\"}},{\"id\":\"growth_links\",\"type\":\"card\",\"data\":{\"card_name\":\"Growth Insights\"}}]",
+  "creation": "2026-06-22 00:00:00.000000",
+  "custom_blocks": [],
+  "docstatus": 0,
+  "doctype": "Workspace",
+  "for_user": "",
+  "hide_custom": 0,
+  "icon": "chart",
+  "idx": 0,
+  "indicator_color": "blue",
+  "is_hidden": 0,
+  "label": "Growth Insights",
+  "links": [
+   {
+    "dependencies": "",
+    "hidden": 0,
+    "is_query_report": 0,
+    "label": "Lifecycle Events",
+    "link_to": "Energy Service Lifecycle Event",
+    "link_type": "DocType",
+    "onboard": 0,
+    "type": "Link"
+   },
+   {
+    "dependencies": "",
+    "hidden": 0,
+    "is_query_report": 1,
+    "label": "Growth Report",
+    "link_to": "User Growth Overview",
+    "link_type": "Report",
+    "onboard": 0,
+    "type": "Link"
+   },
+   {
+    "dependencies": "",
+    "hidden": 0,
+    "is_query_report": 0,
+    "label": "Operations Dashboard",
+    "link_to": "user-growth-dashboard",
+    "link_type": "Page",
+    "onboard": 0,
+    "type": "Link"
+   }
+  ],
+  "modified": "2026-06-22 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "Growth Insights",
+  "name": "Growth Insights",
+  "number_cards": [],
+  "owner": "Administrator",
+  "parent_page": "",
+  "public": 1,
+  "quick_lists": [],
+  "roles": [
+   {
+    "role": "System Manager"
+   },
+   {
+    "role": "Sales Manager"
+   },
+   {
+    "role": "Sales User"
+   }
+  ],
+  "sequence_id": 30,
+  "shortcuts": [
+   {
+    "color": "Blue",
+    "doc_view": "List",
+    "format": "{}",
+    "label": "Lifecycle Events",
+    "link_to": "Energy Service Lifecycle Event",
+    "stats_filter": "[]",
+    "type": "DocType"
+   },
+   {
+    "color": "Green",
+    "doc_view": "",
+    "format": "{}",
+    "label": "Growth Report",
+    "link_to": "User Growth Overview",
+    "stats_filter": "[]",
+    "type": "Report"
+   },
+   {
+    "color": "Cyan",
+    "doc_view": "",
+    "format": "{}",
+    "label": "Operations Dashboard",
+    "link_to": "user-growth-dashboard",
+    "stats_filter": "[]",
+    "type": "Page"
+   }
+  ],
+  "title": "Growth Insights",
+  "type": "Workspace"
+ }
+]

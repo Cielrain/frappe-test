@@ -359,6 +359,16 @@
     background: #d1fae5;
 }
 
+.growth-event-type.reactivation {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+.growth-event-type.activation {
+    color: #0369a1;
+    background: #e0f2fe;
+}
+
 .growth-empty {
     color: #6b7280;
 }

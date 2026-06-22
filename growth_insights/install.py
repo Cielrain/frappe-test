@@ -144,13 +144,16 @@ def seed_mock_data():
                 notes="Additional riders, cabinets, or monthly swap quota added.",
             )
 
+        churn_date = None
         if index in {4, 9, 13, 18, 22}:
+            churn_month_offset = 1 if index in {9, 18} else rng.randint(3, 5)
+            churn_date = add_days(add_months(start_date, churn_month_offset), rng.randint(4, 14))
             _insert_event(
                 customer_id=account_id,
                 customer_name=account_name,
                 service_object_type=object_type,
                 event_type="Churn",
-                event_date=add_days(add_months(start_date, rng.randint(3, 8)), rng.randint(4, 24)),
+                event_date=churn_date,
                 service_plan=plan,
                 mrr=revenue,
                 monthly_swap_quota=quota,
@@ -173,7 +176,7 @@ def seed_mock_data():
                 customer_name=account_name,
                 service_object_type=object_type,
                 event_type="Reactivation",
-                event_date=add_days(add_months(start_date, 10), rng.randint(1, 18)),
+                event_date=add_days(add_months(churn_date, 1), rng.randint(1, 3)),
                 service_plan=plan,
                 mrr=revenue,
                 monthly_swap_quota=quota,
