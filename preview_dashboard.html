@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Growth Insights Preview</title>
+  <link rel="stylesheet" href="growth_insights/growth_insights/page/user_growth_dashboard/user_growth_dashboard.css">
+  <style>
+    body { margin: 0; font-family: Inter, Arial, sans-serif; background: #071013; }
+    .preview-frame { min-height: 100vh; }
+    .preview-note {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      padding: 8px 12px;
+      border: 1px solid rgba(148, 216, 207, 0.22);
+      border-radius: 8px;
+      color: #d9fffa;
+      background: rgba(7, 16, 19, 0.84);
+      font-size: 12px;
+    }
+    .mock-chart {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: end;
+      gap: 10px;
+      height: 280px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(148, 216, 207, 0.12);
+    }
+    .mock-month { display: grid; gap: 8px; align-items: end; height: 100%; }
+    .mock-bars { display: flex; align-items: end; gap: 4px; height: 220px; }
+    .mock-bars i { flex: 1; border-radius: 6px 6px 0 0; }
+    .mock-bars i:first-child { background: #4ade80; }
+    .mock-bars i:nth-child(2) { background: #fb7185; }
+    .mock-line { height: 3px; border-radius: 999px; background: #38bdf8; box-shadow: 0 0 18px #38bdf8; }
+    .mock-month small { color: #9cc9c4; text-align: center; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <div class="preview-frame">
+    <div class="growth-dashboard">
+      <section class="growth-hero">
+        <div>
+          <p class="growth-kicker">Growth Command Center</p>
+          <h1>User Growth Dashboard</h1>
+          <p class="growth-period">2025-07-01 - 2026-06-22</p>
+        </div>
+        <div class="growth-clock">
+          <span>Live Snapshot</span>
+          <strong>2026-06-22 18:30</strong>
+        </div>
+      </section>
+      <section class="growth-kpis">
+        <article class="growth-kpi"><span>Active Customers</span><strong>21</strong><em>Currently retained</em></article>
+        <article class="growth-kpi"><span>Active MRR</span><strong>$42,346</strong><em>Latest customer state</em></article>
+        <article class="growth-kpi"><span>Net New MRR</span><strong>$29,918</strong><em>New + expansion - churn</em></article>
+        <article class="growth-kpi"><span>Logo Churn</span><strong>17.4%</strong><em>Period churn pressure</em></article>
+      </section>
+      <section class="growth-main-grid">
+        <article class="growth-panel growth-panel-wide">
+          <header><h2>Monthly Growth Pulse</h2><span>New logos, churn, and net revenue</span></header>
+          <div class="mock-chart">
+            <div class="mock-month"><div class="mock-bars"><i style="height:44%"></i><i style="height:8%"></i></div><div class="mock-line"></div><small>Jul</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:52%"></i><i style="height:0%"></i></div><div class="mock-line"></div><small>Aug</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:40%"></i><i style="height:12%"></i></div><div class="mock-line"></div><small>Sep</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:66%"></i><i style="height:16%"></i></div><div class="mock-line"></div><small>Oct</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:58%"></i><i style="height:20%"></i></div><div class="mock-line"></div><small>Nov</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:74%"></i><i style="height:8%"></i></div><div class="mock-line"></div><small>Dec</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:68%"></i><i style="height:0%"></i></div><div class="mock-line"></div><small>Jan</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:80%"></i><i style="height:22%"></i></div><div class="mock-line"></div><small>Feb</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:62%"></i><i style="height:12%"></i></div><div class="mock-line"></div><small>Mar</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:92%"></i><i style="height:8%"></i></div><div class="mock-line"></div><small>Apr</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:88%"></i><i style="height:16%"></i></div><div class="mock-line"></div><small>May</small></div>
+            <div class="mock-month"><div class="mock-bars"><i style="height:76%"></i><i style="height:0%"></i></div><div class="mock-line"></div><small>Jun</small></div>
+          </div>
+        </article>
+        <article class="growth-panel">
+          <header><h2>Regional Distribution</h2><span>Active customer MRR</span></header>
+          <div class="growth-bars">
+            <div class="growth-bar-row"><div class="growth-bar-label"><strong>North America</strong><span>$12,400 · 3 customers</span></div><div class="growth-bar-track"><i style="width:100%"></i></div></div>
+            <div class="growth-bar-row"><div class="growth-bar-label"><strong>East China</strong><span>$9,320 · 5 customers</span></div><div class="growth-bar-track"><i style="width:75%"></i></div></div>
+            <div class="growth-bar-row"><div class="growth-bar-label"><strong>APAC</strong><span>$7,860 · 4 customers</span></div><div class="growth-bar-track"><i style="width:63%"></i></div></div>
+            <div class="growth-bar-row"><div class="growth-bar-label"><strong>Europe</strong><span>$6,500 · 4 customers</span></div><div class="growth-bar-track"><i style="width:52%"></i></div></div>
+            <div class="growth-bar-row"><div class="growth-bar-label"><strong>South China</strong><span>$4,200 · 3 customers</span></div><div class="growth-bar-track"><i style="width:34%"></i></div></div>
+          </div>
+        </article>
+      </section>
+      <section class="growth-lower-grid">
+        <article class="growth-panel"><header><h2>Acquisition Mix</h2><span>New customers by channel</span></header><div class="growth-bars compact">
+          <div class="growth-bar-row"><div class="growth-bar-label"><strong>Partner</strong><span>6 · $13,260</span></div><div class="growth-bar-track"><i style="width:100%"></i></div></div>
+          <div class="growth-bar-row"><div class="growth-bar-label"><strong>Referral</strong><span>5 · $8,100</span></div><div class="growth-bar-track"><i style="width:83%"></i></div></div>
+          <div class="growth-bar-row"><div class="growth-bar-label"><strong>Organic</strong><span>4 · $6,900</span></div><div class="growth-bar-track"><i style="width:67%"></i></div></div>
+        </div></article>
+        <article class="growth-panel"><header><h2>Segment Value</h2><span>Active MRR by customer tier</span></header><div class="growth-bars compact">
+          <div class="growth-bar-row"><div class="growth-bar-label"><strong>Enterprise</strong><span>$21,800 · 5 customers</span></div><div class="growth-bar-track"><i style="width:100%"></i></div></div>
+          <div class="growth-bar-row"><div class="growth-bar-label"><strong>Mid-Market</strong><span>$12,640 · 7 customers</span></div><div class="growth-bar-track"><i style="width:58%"></i></div></div>
+          <div class="growth-bar-row"><div class="growth-bar-label"><strong>SMB</strong><span>$5,590 · 6 customers</span></div><div class="growth-bar-track"><i style="width:26%"></i></div></div>
+        </div></article>
+        <article class="growth-panel"><header><h2>Recent Lifecycle Events</h2><span>Latest movement</span></header><div class="growth-events">
+          <div class="growth-event"><span class="growth-event-type expansion">Expansion</span><div><strong>SignalWorks</strong><small>2026-06-18 · East China · $1,800</small></div></div>
+          <div class="growth-event"><span class="growth-event-type">Activation</span><div><strong>MediOrbit</strong><small>2026-06-12 · North America · $5,200</small></div></div>
+          <div class="growth-event"><span class="growth-event-type churn">Churn</span><div><strong>StudioGrid</strong><small>2026-06-02 · South China · $199</small></div></div>
+          <div class="growth-event"><span class="growth-event-type">Reactivation</span><div><strong>LearnLoop</strong><small>2026-05-24 · West China · $699</small></div></div>
+        </div></article>
+      </section>
+    </div>
+  </div>
+  <div class="preview-note">Standalone preview · Frappe page: /app/user-growth-dashboard</div>
+  <script>
+    const events = [
+      { type: "Expansion", name: "SignalWorks", meta: "2026-06-18 · East China · $1,800", className: "expansion" },
+      { type: "Activation", name: "MediOrbit", meta: "2026-06-12 · North America · $5,200", className: "" },
+      { type: "Churn", name: "StudioGrid", meta: "2026-06-02 · South China · $199", className: "churn" },
+      { type: "Reactivation", name: "LearnLoop", meta: "2026-05-24 · West China · $699", className: "" }
+    ];
+
+    function drawEvents(rows) {
+      document.querySelector(".growth-events").innerHTML = rows.map((event) => `
+        <div class="growth-event" data-event-type="${event.type}">
+          <span class="growth-event-type ${event.className}">${event.type}</span>
+          <div><strong>${event.name}</strong><small>${event.meta}</small></div>
+        </div>
+      `).join("");
+    }
+
+    document.querySelectorAll(".growth-kpi").forEach((card, index) => {
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".growth-kpi").forEach((item) => item.classList.remove("is-selected"));
+        card.classList.add("is-selected");
+        const filtered = index === 2 ? events.filter((event) => event.type === "Expansion") : index === 3 ? events.filter((event) => event.type === "Churn") : events;
+        drawEvents(filtered.length ? filtered : events);
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const bar = event.target.closest(".growth-bar-row");
+      if (bar) {
+        bar.parentElement.querySelectorAll(".growth-bar-row").forEach((item) => item.classList.remove("is-selected"));
+        bar.classList.add("is-selected");
+      }
+
+      const lifecycleEvent = event.target.closest(".growth-event");
+      if (lifecycleEvent) {
+        document.querySelectorAll(".growth-event").forEach((item) => item.classList.remove("is-selected"));
+        lifecycleEvent.classList.add("is-selected");
+      }
+    });
+  </script>
+</body>
+</html>

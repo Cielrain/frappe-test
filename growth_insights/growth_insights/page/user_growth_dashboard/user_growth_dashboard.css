@@ -81,6 +81,20 @@
 
 .growth-kpi {
     padding: 18px;
+    cursor: pointer;
+    transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.growth-kpi:hover,
+.growth-kpi.is-selected,
+.growth-bar-row.is-selected,
+.growth-event.is-selected {
+    border-color: rgba(45, 212, 191, 0.62);
+    background: rgba(20, 184, 166, 0.14);
+}
+
+.growth-kpi:hover {
+    transform: translateY(-2px);
 }
 
 .growth-kpi span,
@@ -145,6 +159,13 @@
     margin-bottom: 7px;
 }
 
+.growth-bar-row {
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 .growth-bar-label strong {
     color: #f8fffd;
 }
@@ -175,6 +196,7 @@
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid rgba(148, 216, 207, 0.12);
+    cursor: pointer;
 }
 
 .growth-event strong,

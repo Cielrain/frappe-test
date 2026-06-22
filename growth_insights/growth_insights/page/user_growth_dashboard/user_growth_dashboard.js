@@ -105,6 +105,7 @@ async function render_dashboard(page) {
     render_bars(root.find('[data-list="channels"]'), data.channels || [], "channel", "new_customers", "mrr");
     render_bars(root.find('[data-list="segments"]'), data.segments || [], "segment", "mrr", "active_customers");
     render_events(root.find(".growth-events"), data.recent_events || []);
+    bind_dashboard_interactions(root, data.recent_events || []);
 }
 
 function render_monthly_chart(rows) {
@@ -148,7 +149,7 @@ function render_bars(container, rows, label_key, value_key, sub_key) {
 
 function render_events(container, events) {
     container.html(events.slice(0, 8).map((event) => `
-        <div class="growth-event">
+        <div class="growth-event" data-event-type="${frappe.utils.escape_html(event.event_type || "")}">
             <span class="growth-event-type ${String(event.event_type || "").toLowerCase()}">${frappe.utils.escape_html(event.event_type || "")}</span>
             <div>
                 <strong>${frappe.utils.escape_html(event.customer_name || "")}</strong>
@@ -156,4 +157,32 @@ function render_events(container, events) {
             </div>
         </div>
     `).join("") || `<p class="growth-empty">${__("No lifecycle events yet")}</p>`);
+}
+
+function bind_dashboard_interactions(root, events) {
+    const filter_map = {
+        active_customers: "",
+        active_mrr: "",
+        net_new_mrr: "Expansion",
+        logo_churn_rate: "Churn"
+    };
+
+    root.find(".growth-kpi").on("click", function() {
+        const key = $(this).data("kpi");
+        const event_type = filter_map[key] || "";
+        root.find(".growth-kpi").removeClass("is-selected");
+        $(this).addClass("is-selected");
+        const filtered = event_type ? events.filter((event) => event.event_type === event_type) : events;
+        render_events(root.find(".growth-events"), filtered.length ? filtered : events);
+    });
+
+    root.find(".growth-bars").on("click", ".growth-bar-row", function() {
+        $(this).closest(".growth-bars").find(".growth-bar-row").removeClass("is-selected");
+        $(this).addClass("is-selected");
+    });
+
+    root.find(".growth-events").on("click", ".growth-event", function() {
+        root.find(".growth-event").removeClass("is-selected");
+        $(this).addClass("is-selected");
+    });
 }
