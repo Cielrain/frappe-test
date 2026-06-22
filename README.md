@@ -46,6 +46,18 @@ Direct routes:
 - `/app/query-report/User%20Growth%20Overview`
 - `/app/user-growth-dashboard`
 
+## Local Preview Login
+
+If you are reviewing the Docker preview environment prepared for this submission, use:
+
+```text
+URL: http://127.0.0.1:8000/desk/growth-insights
+User: Administrator
+Password: admin
+```
+
+For a fresh installation on another Frappe site, use that site's own Administrator password or any System Manager account. This app does not create a fixed login user.
+
 ## Notes
 
 - This is a Frappe custom app, not a standalone static website. It must be installed into a Frappe bench site.
