@@ -1,15 +1,13 @@
 .layout-main-section .growth-dashboard-shell,
 .growth-dashboard-shell {
-    background: #071013;
+    background: #f8fafc;
 }
 
 .growth-dashboard {
     min-height: calc(100vh - 120px);
-    padding: 24px;
-    color: #e7f8f5;
-    background:
-        linear-gradient(90deg, rgba(45, 212, 191, 0.08), transparent 42%, rgba(250, 204, 21, 0.06)),
-        linear-gradient(135deg, #071013 0%, #102326 48%, #161b22 100%);
+    padding: 20px;
+    color: #111827;
+    background: #f8fafc;
 }
 
 .growth-hero {
@@ -17,7 +15,7 @@
     justify-content: space-between;
     gap: 24px;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .growth-kicker,
@@ -31,106 +29,149 @@
 .growth-bar-label span,
 .growth-event small,
 .growth-matrix-note {
-    color: #9cc9c4;
+    color: #6b7280;
 }
 
 .growth-kicker {
-    margin: 0 0 8px;
+    margin: 0 0 6px;
     font-size: 12px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0;
 }
 
 .growth-hero h1 {
     margin: 0;
-    font-size: 40px;
-    line-height: 1.1;
-    color: #f8fffd;
+    font-size: 30px;
+    font-weight: 650;
+    line-height: 1.15;
+    color: #111827;
 }
 
-.growth-clock {
-    min-width: 220px;
-    padding: 14px 16px;
-    border: 1px solid rgba(148, 216, 207, 0.22);
-    background: rgba(7, 16, 19, 0.64);
-    border-radius: 8px;
-    text-align: right;
+.growth-period {
+    margin-top: 8px;
 }
 
 .growth-hero-side {
     display: grid;
-    gap: 12px;
+    gap: 10px;
     justify-items: end;
 }
 
 .growth-mode-switch {
     display: inline-grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 4px;
-    padding: 4px;
-    border: 1px solid rgba(148, 216, 207, 0.20);
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
-    background: rgba(7, 16, 19, 0.54);
+    background: #ffffff;
 }
 
 .growth-mode-switch button {
     min-width: 86px;
-    height: 32px;
+    height: 30px;
     border: 0;
     border-radius: 6px;
-    color: #b9ded9;
+    color: #4b5563;
     background: transparent;
     cursor: pointer;
 }
 
 .growth-mode-switch button:hover,
 .growth-mode-switch button.is-active {
-    color: #061113;
-    background: #67e8f9;
+    color: #111827;
+    background: #f3f4f6;
+}
+
+.growth-clock {
+    min-width: 220px;
+    padding: 12px 14px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    border-radius: 8px;
+    text-align: right;
 }
 
 .growth-clock strong {
     display: block;
     margin-top: 4px;
-    color: #f8fffd;
+    color: #111827;
 }
 
 .growth-kpis,
+.growth-insight-strip,
 .growth-main-grid,
 .growth-lower-grid {
     display: grid;
-    gap: 16px;
+    gap: 12px;
 }
 
 .growth-kpis {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+}
+
+.growth-kpi,
+.growth-panel,
+.growth-insight {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.growth-kpi {
+    padding: 16px;
+    cursor: pointer;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.growth-kpi:hover,
+.growth-kpi.is-selected,
+.growth-bar-row.is-selected,
+.growth-event.is-selected {
+    border-color: #93c5fd;
+    background: #eff6ff;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.08);
+}
+
+.growth-kpi span,
+.growth-kpi em {
+    display: block;
+    font-style: normal;
+}
+
+.growth-kpi span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.growth-kpi strong {
+    display: block;
+    margin: 8px 0;
+    font-size: 26px;
+    font-weight: 650;
+    line-height: 1.1;
+    color: #111827;
 }
 
 .growth-insight-strip {
-    display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .growth-insight {
-    min-height: 112px;
-    padding: 16px;
-    border: 1px solid rgba(148, 216, 207, 0.18);
-    border-radius: 8px;
-    background: rgba(9, 30, 35, 0.58);
+    min-height: 108px;
+    padding: 14px;
     cursor: pointer;
-    transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
 }
 
-.growth-insight:hover {
-    transform: translateY(-2px);
-}
-
+.growth-insight:hover,
 .growth-insight.is-primary {
-    border-color: rgba(250, 204, 21, 0.72);
-    background: linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(20, 184, 166, 0.10));
+    border-color: #a7f3d0;
+    background: #f0fdf4;
 }
 
 .growth-insight span,
@@ -140,64 +181,25 @@
 }
 
 .growth-insight span {
-    margin-bottom: 8px;
+    margin-bottom: 7px;
     font-size: 12px;
+    font-weight: 600;
     text-transform: uppercase;
 }
 
 .growth-insight strong {
-    margin-bottom: 8px;
-    color: #f8fffd;
+    margin-bottom: 7px;
+    color: #111827;
 }
 
 .growth-insight em {
     font-style: normal;
-    line-height: 1.35;
-}
-
-.growth-kpi,
-.growth-panel {
-    border: 1px solid rgba(148, 216, 207, 0.18);
-    border-radius: 8px;
-    background: rgba(9, 30, 35, 0.72);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.24);
-}
-
-.growth-kpi {
-    padding: 18px;
-    cursor: pointer;
-    transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
-}
-
-.growth-kpi:hover,
-.growth-kpi.is-selected,
-.growth-bar-row.is-selected,
-.growth-event.is-selected {
-    border-color: rgba(45, 212, 191, 0.62);
-    background: rgba(20, 184, 166, 0.14);
-}
-
-.growth-kpi:hover {
-    transform: translateY(-2px);
-}
-
-.growth-kpi span,
-.growth-kpi em {
-    display: block;
-    font-style: normal;
-}
-
-.growth-kpi strong {
-    display: block;
-    margin: 8px 0;
-    font-size: 30px;
-    line-height: 1.1;
-    color: #f8fffd;
+    line-height: 1.4;
 }
 
 .growth-main-grid {
     grid-template-columns: 2fr 1fr;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .growth-lower-grid {
@@ -205,51 +207,8 @@
 }
 
 .growth-panel {
-    min-height: 320px;
-    padding: 18px;
-}
-
-.growth-matrix {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-}
-
-.growth-matrix button {
-    min-height: 74px;
-    padding: 12px;
-    border: 1px solid rgba(148, 216, 207, 0.18);
-    border-radius: 8px;
-    color: #e7f8f5;
-    background: rgba(7, 16, 19, 0.42);
-    cursor: pointer;
-    text-align: left;
-}
-
-.growth-matrix button:hover,
-.growth-matrix button.is-selected {
-    border-color: rgba(250, 204, 21, 0.76);
-    background: rgba(250, 204, 21, 0.13);
-}
-
-.growth-matrix strong,
-.growth-matrix span {
-    display: block;
-}
-
-.growth-matrix strong {
-    margin-bottom: 6px;
-    font-size: 20px;
-    color: #facc15;
-}
-
-.growth-matrix span {
-    color: #b9ded9;
-}
-
-.growth-matrix-note {
-    margin: 14px 0 0;
-    line-height: 1.35;
+    min-height: 312px;
+    padding: 16px;
 }
 
 .growth-panel header {
@@ -257,13 +216,14 @@
     justify-content: space-between;
     gap: 12px;
     align-items: baseline;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .growth-panel h2 {
     margin: 0;
-    font-size: 17px;
-    color: #f8fffd;
+    font-size: 16px;
+    font-weight: 650;
+    color: #111827;
 }
 
 .growth-chart {
@@ -272,11 +232,18 @@
 
 .growth-bars {
     display: grid;
-    gap: 14px;
+    gap: 8px;
 }
 
-.growth-bars.compact {
-    gap: 12px;
+.growth-bar-row {
+    padding: 9px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.growth-bar-row:hover {
+    background: #f9fafb;
 }
 
 .growth-bar-label {
@@ -286,34 +253,71 @@
     margin-bottom: 7px;
 }
 
-.growth-bar-row {
-    padding: 8px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
 .growth-bar-label strong {
-    color: #f8fffd;
+    color: #111827;
+    font-weight: 600;
 }
 
 .growth-bar-track {
-    height: 9px;
+    height: 8px;
     overflow: hidden;
     border-radius: 999px;
-    background: rgba(148, 216, 207, 0.16);
+    background: #eef2f7;
 }
 
 .growth-bar-track i {
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: linear-gradient(90deg, #2dd4bf, #38bdf8);
+    background: #2563eb;
+}
+
+.growth-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.growth-matrix button {
+    min-height: 70px;
+    padding: 11px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    color: #111827;
+    background: #ffffff;
+    cursor: pointer;
+    text-align: left;
+}
+
+.growth-matrix button:hover,
+.growth-matrix button.is-selected {
+    border-color: #93c5fd;
+    background: #eff6ff;
+}
+
+.growth-matrix strong,
+.growth-matrix span {
+    display: block;
+}
+
+.growth-matrix strong {
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #2563eb;
+}
+
+.growth-matrix span {
+    color: #4b5563;
+}
+
+.growth-matrix-note {
+    margin: 12px 0 0;
+    line-height: 1.4;
 }
 
 .growth-events {
     display: grid;
-    gap: 10px;
+    gap: 6px;
 }
 
 .growth-event {
@@ -321,9 +325,14 @@
     grid-template-columns: 94px 1fr;
     gap: 12px;
     align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(148, 216, 207, 0.12);
+    padding: 9px;
+    border: 1px solid transparent;
+    border-radius: 8px;
     cursor: pointer;
+}
+
+.growth-event:hover {
+    background: #f9fafb;
 }
 
 .growth-event strong,
@@ -332,38 +341,45 @@
 }
 
 .growth-event-type {
-    padding: 5px 8px;
+    padding: 4px 8px;
     border-radius: 999px;
     text-align: center;
     font-size: 12px;
-    color: #061113;
-    background: #67e8f9;
+    color: #1d4ed8;
+    background: #dbeafe;
 }
 
 .growth-event-type.churn {
-    background: #fb7185;
+    color: #b91c1c;
+    background: #fee2e2;
 }
 
 .growth-event-type.expansion {
-    background: #86efac;
+    color: #047857;
+    background: #d1fae5;
 }
 
 .growth-empty {
-    color: #9cc9c4;
+    color: #6b7280;
+}
+
+@media (max-width: 1200px) {
+    .growth-lower-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 1100px) {
     .growth-kpis,
     .growth-insight-strip,
-    .growth-main-grid,
-    .growth-lower-grid {
+    .growth-main-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media (max-width: 760px) {
     .growth-dashboard {
-        padding: 16px;
+        padding: 14px;
     }
 
     .growth-hero,
@@ -373,15 +389,14 @@
 
     .growth-hero-side {
         justify-items: start;
-        margin-top: 16px;
+        margin-top: 14px;
     }
 
     .growth-hero h1 {
-        font-size: 30px;
+        font-size: 26px;
     }
 
     .growth-clock {
-        margin-top: 16px;
         text-align: left;
     }
 
