@@ -10,6 +10,13 @@ It delivers:
 
 ## Install
 
+Prerequisites:
+
+- A working Frappe bench environment.
+- An existing Frappe site, for example one created with `bench new-site <site-name>`.
+- Frappe v15 or newer is recommended. The app has also been smoke-tested in a Frappe Docker preview environment.
+- Access to this GitHub repository. If the repository is private, the installer needs GitHub permission or a configured token/SSH credential.
+
 ```bash
 cd frappe-bench
 bench get-app https://github.com/Cielrain/frappe-test.git
@@ -18,7 +25,7 @@ bench --site <site-name> migrate
 bench --site <site-name> clear-cache
 ```
 
-The app seeds mock lifecycle data during installation. To seed or refresh demo data later:
+The app seeds mock lifecycle data during installation. To seed or refresh demo data later, run:
 
 ```bash
 bench --site <site-name> execute growth_insights.install.seed_mock_data
@@ -26,10 +33,24 @@ bench --site <site-name> execute growth_insights.install.seed_mock_data
 
 ## Use
 
+- Log in to Frappe Desk with an Administrator or System Manager account.
 - Open the **Growth Insights** workspace in Frappe Desk.
 - Use **Lifecycle Events** to inspect or edit rider, fleet, and station lifecycle records.
 - Use **Growth Report** to review monthly signup, activation, reactivation, churn, expansion, and revenue movement.
 - Use **Operations Dashboard** to open the large-screen growth dashboard.
+
+Direct routes:
+
+- `/app/growth-insights`
+- `/app/energy-service-lifecycle-event`
+- `/app/query-report/User%20Growth%20Overview`
+- `/app/user-growth-dashboard`
+
+## Notes
+
+- This is a Frappe custom app, not a standalone static website. It must be installed into a Frappe bench site.
+- If the app installs but the workspace does not appear, run `bench --site <site-name> migrate` and `bench --site <site-name> clear-cache`, then refresh Desk.
+- If demo data is missing, run the seed command above.
 
 ## Development
 
