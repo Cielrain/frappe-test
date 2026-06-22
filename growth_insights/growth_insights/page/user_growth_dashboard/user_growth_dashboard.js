@@ -1,7 +1,7 @@
 frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
     const page = frappe.ui.make_app_page({
         parent: wrapper,
-        title: __("User Growth Dashboard"),
+        title: __("Zhige Energy Operations Dashboard"),
         single_column: true
     });
 
@@ -10,12 +10,12 @@ frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
         <div class="growth-dashboard">
             <section class="growth-hero">
                 <div>
-                    <p class="growth-kicker">${__("Growth Command Center")}</p>
-                    <h1>${__("User Growth Dashboard")}</h1>
+                    <p class="growth-kicker">${__("Battery Swapping Command Center")}</p>
+                    <h1>${__("Zhige Energy Operations Dashboard")}</h1>
                     <p class="growth-period"></p>
                 </div>
                 <div class="growth-clock">
-                    <span>${__("Live Snapshot")}</span>
+                    <span>${__("Live Operations Snapshot")}</span>
                     <strong></strong>
                 </div>
             </section>
@@ -33,15 +33,15 @@ frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
             <section class="growth-main-grid">
                 <article class="growth-panel growth-panel-wide">
                     <header>
-                        <h2>${__("Monthly Growth Pulse")}</h2>
-                        <span>${__("New logos, churn, and net revenue")}</span>
+                        <h2>${__("Monthly Service Growth")}</h2>
+                        <span>${__("New service accounts, churn, and net revenue")}</span>
                     </header>
                     <div id="growth-monthly-chart" class="growth-chart"></div>
                 </article>
                 <article class="growth-panel">
                     <header>
-                        <h2>${__("Regional Distribution")}</h2>
-                        <span>${__("Active customer MRR")}</span>
+                        <h2>${__("Operating Territory Distribution")}</h2>
+                        <span>${__("Active service revenue by region")}</span>
                     </header>
                     <div class="growth-bars" data-list="regions"></div>
                 </article>
@@ -51,14 +51,14 @@ frappe.pages["user-growth-dashboard"].on_page_load = function(wrapper) {
                 <article class="growth-panel">
                     <header>
                         <h2>${__("Acquisition Mix")}</h2>
-                        <span>${__("New customers by channel")}</span>
+                        <span>${__("New riders, fleets, and stations by channel")}</span>
                     </header>
                     <div class="growth-bars compact" data-list="channels"></div>
                 </article>
                 <article class="growth-panel">
                     <header>
-                        <h2>${__("Segment Value")}</h2>
-                        <span>${__("Active MRR by customer tier")}</span>
+                        <h2>${__("Service Object Value")}</h2>
+                        <span>${__("Revenue by rider, fleet, and station account")}</span>
                     </header>
                     <div class="growth-bars compact" data-list="segments"></div>
                 </article>
@@ -87,10 +87,10 @@ async function render_dashboard(page) {
     root.find(".growth-clock strong").text(frappe.datetime.str_to_user(frappe.datetime.now_datetime()));
 
     const kpis = {
-        active_customers: [__("Active Customers"), data.summary?.active_customers || 0, __("Currently retained")],
-        active_mrr: [__("Active MRR"), format_currency(data.summary?.active_mrr || 0), __("Latest customer state")],
-        net_new_mrr: [__("Net New MRR"), format_currency(data.summary?.net_new_mrr || 0), __("New + expansion - churn")],
-        logo_churn_rate: [__("Logo Churn"), `${flt(data.summary?.logo_churn_rate || 0, 1)}%`, __("Period churn pressure")]
+        active_customers: [__("Active Service Accounts"), data.summary?.active_customers || 0, __("Riders, fleets, and stations retained")],
+        active_mrr: [__("Active Service Revenue"), format_currency(data.summary?.active_mrr || 0), __("Latest operating account state")],
+        net_new_mrr: [__("Net New Revenue"), format_currency(data.summary?.net_new_mrr || 0), __("Signup + expansion - churn")],
+        logo_churn_rate: [__("Account Churn"), `${flt(data.summary?.logo_churn_rate || 0, 1)}%`, __("Service loss pressure")]
     };
 
     Object.entries(kpis).forEach(([key, value]) => {
@@ -113,7 +113,7 @@ function render_monthly_chart(rows) {
     const chart_data = {
         labels,
         datasets: [
-            { name: __("New"), chartType: "bar", values: rows.map((item) => item.new_customers || 0) },
+            { name: __("New Accounts"), chartType: "bar", values: rows.map((item) => item.new_customers || 0) },
             { name: __("Churn"), chartType: "bar", values: rows.map((item) => item.churned_customers || 0) },
             { name: __("Net MRR"), chartType: "line", values: rows.map((item) => item.net_mrr || 0) }
         ]
@@ -134,7 +134,7 @@ function render_bars(container, rows, label_key, value_key, sub_key) {
     container.html(rows.slice(0, 7).map((item) => {
         const width = Math.max((Number(item[value_key] || 0) / max) * 100, 4);
         const value = value_key.includes("mrr") ? format_currency(item[value_key] || 0) : item[value_key] || 0;
-        const sub = sub_key.includes("mrr") ? format_currency(item[sub_key] || 0) : `${item[sub_key] || 0} ${__("customers")}`;
+        const sub = sub_key.includes("mrr") ? format_currency(item[sub_key] || 0) : `${item[sub_key] || 0} ${__("accounts")}`;
         return `
             <div class="growth-bar-row">
                 <div class="growth-bar-label">

@@ -4,40 +4,50 @@ import frappe
 from frappe.utils import add_days, add_months, getdate
 
 
-CUSTOMERS = [
-    ("GI-1001", "Northstar Labs", "North China", "Beijing", "SaaS", "Partner", "Enterprise"),
-    ("GI-1002", "Riverlane Retail", "East China", "Shanghai", "E-commerce", "Paid Search", "Mid-Market"),
-    ("GI-1003", "Bright Class", "South China", "Shenzhen", "Education", "Referral", "SMB"),
-    ("GI-1004", "Pulse Pay", "APAC", "Singapore", "FinTech", "Event", "Enterprise"),
-    ("GI-1005", "ForgeWorks", "East China", "Suzhou", "Manufacturing", "Outbound", "Mid-Market"),
-    ("GI-1006", "Medica Cloud", "North America", "San Francisco", "Healthcare", "Organic", "Enterprise"),
-    ("GI-1007", "Atlas Freight", "Europe", "Berlin", "Logistics", "Partner", "Business"),
-    ("GI-1008", "CreatorHub", "South China", "Guangzhou", "Media", "Marketplace", "Growth"),
-    ("GI-1009", "Finch Analytics", "West China", "Chengdu", "SaaS", "Referral", "Growth"),
-    ("GI-1010", "Urban Basket", "North China", "Tianjin", "E-commerce", "Paid Search", "Starter"),
-    ("GI-1011", "Campus One", "East China", "Hangzhou", "Education", "Organic", "Growth"),
-    ("GI-1012", "BlueMint Health", "APAC", "Tokyo", "Healthcare", "Partner", "Business"),
-    ("GI-1013", "Stackpilot", "North America", "Austin", "SaaS", "Outbound", "Enterprise"),
-    ("GI-1014", "MetroParts", "Europe", "Paris", "Manufacturing", "Event", "Business"),
-    ("GI-1015", "ShipZen", "South China", "Hong Kong", "Logistics", "Marketplace", "Growth"),
-    ("GI-1016", "MediaSpring", "East China", "Nanjing", "Media", "Organic", "Starter"),
-    ("GI-1017", "Oak Ledger", "North China", "Beijing", "FinTech", "Referral", "Business"),
-    ("GI-1018", "CloudCrafters", "APAC", "Seoul", "SaaS", "Paid Search", "Mid-Market"),
-    ("GI-1019", "LearnLoop", "West China", "Chongqing", "Education", "Partner", "SMB"),
-    ("GI-1020", "GreenCart", "Europe", "Amsterdam", "E-commerce", "Organic", "Growth"),
-    ("GI-1021", "MediOrbit", "North America", "Boston", "Healthcare", "Outbound", "Enterprise"),
-    ("GI-1022", "CargoVista", "APAC", "Sydney", "Logistics", "Event", "Business"),
-    ("GI-1023", "StudioGrid", "South China", "Shenzhen", "Media", "Referral", "Starter"),
-    ("GI-1024", "SignalWorks", "East China", "Shanghai", "SaaS", "Marketplace", "Mid-Market"),
+ACCOUNTS = [
+    ("ZE-1001", "杭州滨江骑手-李明", "Rider", "Hangzhou Core", "杭州", "Food Delivery", "Station Walk-in", "Rider Unlimited", "星耀城换电站"),
+    ("ZE-1002", "顺丰同城杭州西湖站", "Fleet Customer", "Hangzhou Core", "杭州", "Express Delivery", "Fleet Contract", "Fleet Premium", "古荡换电站"),
+    ("ZE-1003", "美团骑手-王凯", "Rider", "Ningbo Network", "宁波", "Food Delivery", "Rider Referral", "Rider Monthly", "天一广场换电站"),
+    ("ZE-1004", "义乌小商品城配送队", "Fleet Customer", "Jinhua-Yiwu", "义乌", "City Distribution", "Platform Cooperation", "Fleet Standard", "国际商贸城换电站"),
+    ("ZE-1005", "绍兴柯桥加盟站", "Franchise Station", "Shaoxing-Huzhou", "绍兴", "Station Operation", "Local Operator", "Station Operation", "柯桥轻纺城站"),
+    ("ZE-1006", "宁波北仑港区配送队", "Fleet Customer", "Ningbo Network", "宁波", "City Distribution", "Fleet Contract", "Fleet Premium", "北仑港换电站"),
+    ("ZE-1007", "上海松江即时零售队", "Fleet Customer", "Shanghai Periphery", "上海", "Instant Retail", "Platform Cooperation", "Fleet Standard", "松江大学城换电站"),
+    ("ZE-1008", "湖州织里骑手-陈越", "Rider", "Shaoxing-Huzhou", "湖州", "Express Delivery", "Operations Campaign", "Rider Monthly", "织里童装城站"),
+    ("ZE-1009", "杭州下沙校园服务队", "Fleet Customer", "Hangzhou Core", "杭州", "Campus Service", "Device Sales", "Fleet Standard", "下沙高教园站"),
+    ("ZE-1010", "金华婺城骑手-周航", "Rider", "Jinhua-Yiwu", "金华", "Food Delivery", "Rider Referral", "Rider Monthly", "婺城万达换电站"),
+    ("ZE-1011", "温州鹿城外卖联盟", "Fleet Customer", "Wenzhou Network", "温州", "Food Delivery", "Fleet Contract", "Fleet Premium", "鹿城五马街站"),
+    ("ZE-1012", "杭州萧山直营站", "Direct Station", "Hangzhou Core", "杭州", "Station Operation", "Device Sales", "Station Operation", "萧山机场路站"),
+    ("ZE-1013", "宁波鄞州骑手-赵磊", "Rider", "Ningbo Network", "宁波", "Instant Retail", "Station Walk-in", "Rider Unlimited", "鄞州万达换电站"),
+    ("ZE-1014", "苏州园区配送队", "Fleet Customer", "Jiangsu Network", "苏州", "Express Delivery", "Platform Cooperation", "Fleet Standard", "金鸡湖换电站"),
+    ("ZE-1015", "义乌北苑加盟站", "Franchise Station", "Jinhua-Yiwu", "义乌", "Station Operation", "Local Operator", "Station Operation", "北苑快递园站"),
+    ("ZE-1016", "嘉兴南湖骑手-刘一", "Rider", "Shaoxing-Huzhou", "嘉兴", "Food Delivery", "Operations Campaign", "Rider Monthly", "南湖万达站"),
+    ("ZE-1017", "温州龙湾同城配送", "Fleet Customer", "Wenzhou Network", "温州", "City Distribution", "Fleet Contract", "Fleet Standard", "龙湾机场站"),
+    ("ZE-1018", "上海青浦快递站", "Fleet Customer", "Shanghai Periphery", "上海", "Express Delivery", "Fleet Contract", "Fleet Premium", "青浦奥莱站"),
+    ("ZE-1019", "杭州余杭骑手-孙杰", "Rider", "Hangzhou Core", "杭州", "Instant Retail", "Station Walk-in", "Rider Unlimited", "未来科技城站"),
+    ("ZE-1020", "绍兴越城校园服务", "Fleet Customer", "Shaoxing-Huzhou", "绍兴", "Campus Service", "Platform Cooperation", "Fleet Standard", "越城大学城站"),
+    ("ZE-1021", "宁波慈溪直营站", "Direct Station", "Ningbo Network", "慈溪", "Station Operation", "Device Sales", "Station Operation", "慈溪银泰站"),
+    ("ZE-1022", "金华永康五金配送", "Fleet Customer", "Jinhua-Yiwu", "永康", "City Distribution", "Fleet Contract", "Fleet Standard", "永康总部中心站"),
+    ("ZE-1023", "杭州上城骑手-阿森", "Rider", "Hangzhou Core", "杭州", "Food Delivery", "Rider Referral", "Rider Monthly", "湖滨银泰换电站"),
+    ("ZE-1024", "苏州昆山即时零售", "Fleet Customer", "Jiangsu Network", "昆山", "Instant Retail", "Platform Cooperation", "Fleet Premium", "昆山花桥站"),
 ]
 
 
-PLAN_MRR = {
-    "Starter": 199,
-    "Growth": 699,
-    "Business": 1800,
-    "Enterprise": 5200,
-    "Free": 0,
+PLAN_REVENUE = {
+    "Trial": 0,
+    "Rider Monthly": 299,
+    "Rider Unlimited": 499,
+    "Fleet Standard": 3800,
+    "Fleet Premium": 9800,
+    "Station Operation": 16800,
+}
+
+PLAN_QUOTA = {
+    "Trial": 20,
+    "Rider Monthly": 90,
+    "Rider Unlimited": 180,
+    "Fleet Standard": 1200,
+    "Fleet Premium": 3600,
+    "Station Operation": 12000,
 }
 
 
@@ -46,125 +56,175 @@ def after_install():
 
 
 def seed_mock_data():
-    if frappe.db.exists("Customer Lifecycle Event", {"customer_id": ["like", "GI-%"]}):
+    if frappe.db.exists("Energy Service Lifecycle Event", {"customer_id": ["like", "ZE-%"]}):
         return
 
-    rng = Random(42)
+    rng = Random(86)
     base_date = getdate("2025-07-01")
-    churn_reasons = ["Price", "Missing Feature", "Low Usage", "Competitor", "Payment Failed"]
+    churn_reasons = [
+        "Station Too Far",
+        "Battery Availability",
+        "Price Sensitivity",
+        "Vehicle Retired",
+        "Fleet Contract Ended",
+        "Competitor Station",
+    ]
 
-    for index, customer in enumerate(CUSTOMERS):
-        customer_id, customer_name, region, city, industry, channel, plan = customer
-        start_date = add_days(add_months(base_date, index % 10), rng.randint(0, 21))
-        segment = _segment_for_plan(plan)
-        base_mrr = PLAN_MRR.get(plan, 499)
-        seats = max(3, int(base_mrr / 180) + rng.randint(1, 18))
+    for index, account in enumerate(ACCOUNTS):
+        account_id, account_name, object_type, region, city, scenario, channel, plan, station = account
+        start_date = add_days(add_months(base_date, index % 10), rng.randint(0, 20))
+        revenue = PLAN_REVENUE[plan]
+        quota = PLAN_QUOTA[plan]
+        vehicle_type = _vehicle_for_scenario(scenario, object_type)
+        battery_model = _battery_for_vehicle(vehicle_type)
 
         _insert_event(
-            customer_id=customer_id,
-            customer_name=customer_name,
+            customer_id=account_id,
+            customer_name=account_name,
+            service_object_type=object_type,
             event_type="Signup",
             event_date=start_date,
-            customer_segment=segment,
-            plan=plan,
-            mrr=base_mrr,
-            seats=seats,
+            service_plan=plan,
+            mrr=revenue,
+            monthly_swap_quota=quota,
+            vehicle_type=vehicle_type,
+            battery_model=battery_model,
+            station_name=station,
+            cabinet_count=_cabinet_count(object_type, plan),
             region=region,
             city=city,
-            industry=industry,
+            industry=scenario,
             channel=channel,
-            health_score=rng.randint(64, 92),
-            notes="Mock signup generated by Growth Insights.",
+            health_score=rng.randint(68, 94),
+            notes="Mock signup generated for Zhige battery swapping operations.",
         )
 
         if index % 3 != 0:
             _insert_event(
-                customer_id=customer_id,
-                customer_name=customer_name,
+                customer_id=account_id,
+                customer_name=account_name,
+                service_object_type=object_type,
                 event_type="Activation",
-                event_date=add_days(start_date, rng.randint(7, 25)),
-                customer_segment=segment,
-                plan=plan,
-                mrr=base_mrr,
-                seats=seats,
+                event_date=add_days(start_date, rng.randint(3, 18)),
+                service_plan=plan,
+                mrr=revenue,
+                monthly_swap_quota=quota,
+                vehicle_type=vehicle_type,
+                battery_model=battery_model,
+                station_name=station,
+                cabinet_count=_cabinet_count(object_type, plan),
                 region=region,
                 city=city,
-                industry=industry,
+                industry=scenario,
                 channel=channel,
-                health_score=rng.randint(72, 96),
-                notes="First value milestone reached.",
+                health_score=rng.randint(76, 98),
+                notes="First battery swap and service onboarding completed.",
             )
 
         if index % 4 == 1:
-            expansion_mrr = int(base_mrr * rng.choice([0.25, 0.35, 0.5]))
+            expansion_revenue = int(revenue * rng.choice([0.25, 0.35, 0.5]))
             _insert_event(
-                customer_id=customer_id,
-                customer_name=customer_name,
+                customer_id=account_id,
+                customer_name=account_name,
+                service_object_type=object_type,
                 event_type="Expansion",
                 event_date=add_days(add_months(start_date, rng.randint(2, 5)), rng.randint(0, 12)),
-                customer_segment=segment,
-                plan=plan,
-                mrr=expansion_mrr,
-                seats=max(1, int(seats * 0.35)),
+                service_plan=plan,
+                mrr=expansion_revenue,
+                monthly_swap_quota=int(quota * 0.35),
+                vehicle_type=vehicle_type,
+                battery_model=battery_model,
+                station_name=station,
+                cabinet_count=max(0, int(_cabinet_count(object_type, plan) * 0.35)),
                 region=region,
                 city=city,
-                industry=industry,
+                industry=scenario,
                 channel=channel,
-                health_score=rng.randint(78, 98),
-                notes="Seat or module expansion.",
+                health_score=rng.randint(82, 99),
+                notes="Additional riders, cabinets, or monthly swap quota added.",
             )
 
         if index in {4, 9, 13, 18, 22}:
             _insert_event(
-                customer_id=customer_id,
-                customer_name=customer_name,
+                customer_id=account_id,
+                customer_name=account_name,
+                service_object_type=object_type,
                 event_type="Churn",
                 event_date=add_days(add_months(start_date, rng.randint(3, 8)), rng.randint(4, 24)),
-                customer_segment=segment,
-                plan=plan,
-                mrr=base_mrr,
-                seats=seats,
+                service_plan=plan,
+                mrr=revenue,
+                monthly_swap_quota=quota,
+                vehicle_type=vehicle_type,
+                battery_model=battery_model,
+                station_name=station,
+                cabinet_count=_cabinet_count(object_type, plan),
                 region=region,
                 city=city,
-                industry=industry,
+                industry=scenario,
                 channel=channel,
-                health_score=rng.randint(18, 44),
+                health_score=rng.randint(18, 46),
                 churn_reason=rng.choice(churn_reasons),
-                notes="Mock churn event for demo reporting.",
+                notes="Mock churn event for operations analysis.",
             )
 
         if index in {9, 18}:
             _insert_event(
-                customer_id=customer_id,
-                customer_name=customer_name,
+                customer_id=account_id,
+                customer_name=account_name,
+                service_object_type=object_type,
                 event_type="Reactivation",
                 event_date=add_days(add_months(start_date, 10), rng.randint(1, 18)),
-                customer_segment=segment,
-                plan=plan,
-                mrr=base_mrr,
-                seats=seats,
+                service_plan=plan,
+                mrr=revenue,
+                monthly_swap_quota=quota,
+                vehicle_type=vehicle_type,
+                battery_model=battery_model,
+                station_name=station,
+                cabinet_count=_cabinet_count(object_type, plan),
                 region=region,
                 city=city,
-                industry=industry,
+                industry=scenario,
                 channel=channel,
-                health_score=rng.randint(70, 88),
-                notes="Recovered through win-back campaign.",
+                health_score=rng.randint(72, 90),
+                notes="Recovered through station coverage and operations follow-up.",
             )
 
     frappe.db.commit()
 
 
-def _segment_for_plan(plan):
-    if plan == "Enterprise":
-        return "Enterprise"
-    if plan == "Business":
-        return "Mid-Market"
-    if plan == "Growth":
-        return "SMB"
-    return "Startup"
+def _vehicle_for_scenario(scenario, object_type):
+    if object_type in {"Franchise Station", "Direct Station"}:
+        return "Station Asset"
+    if scenario in {"City Distribution", "Express Delivery"}:
+        return "Cargo Tricycle"
+    if scenario == "Food Delivery":
+        return "Delivery Scooter"
+    return "E-bike"
+
+
+def _battery_for_vehicle(vehicle_type):
+    if vehicle_type == "Cargo Tricycle":
+        return "72V45Ah LFP"
+    if vehicle_type == "Delivery Scooter":
+        return "60V30Ah LFP"
+    if vehicle_type == "Station Asset":
+        return "Swapping Cabinet"
+    return "48V24Ah LFP"
+
+
+def _cabinet_count(object_type, plan):
+    if object_type == "Direct Station":
+        return 8
+    if object_type == "Franchise Station":
+        return 5
+    if plan == "Fleet Premium":
+        return 3
+    if plan == "Fleet Standard":
+        return 1
+    return 0
 
 
 def _insert_event(**values):
-    doc = frappe.new_doc("Customer Lifecycle Event")
+    doc = frappe.new_doc("Energy Service Lifecycle Event")
     doc.update(values)
     doc.insert(ignore_permissions=True)

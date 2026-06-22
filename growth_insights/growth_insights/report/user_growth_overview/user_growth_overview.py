@@ -14,14 +14,14 @@ def execute(filters=None):
 
     columns = [
         {"label": _("Month"), "fieldname": "month", "fieldtype": "Data", "width": 110},
-        {"label": _("New Customers"), "fieldname": "new_customers", "fieldtype": "Int", "width": 130},
-        {"label": _("Churned Customers"), "fieldname": "churned_customers", "fieldtype": "Int", "width": 150},
+        {"label": _("New Service Accounts"), "fieldname": "new_customers", "fieldtype": "Int", "width": 160},
+        {"label": _("Churned Accounts"), "fieldname": "churned_customers", "fieldtype": "Int", "width": 150},
         {"label": _("Expansion Events"), "fieldname": "expansions", "fieldtype": "Int", "width": 140},
-        {"label": _("New MRR"), "fieldname": "new_mrr", "fieldtype": "Currency", "width": 120},
-        {"label": _("Expansion MRR"), "fieldname": "expansion_mrr", "fieldtype": "Currency", "width": 140},
-        {"label": _("Churn MRR"), "fieldname": "churn_mrr", "fieldtype": "Currency", "width": 120},
-        {"label": _("Net MRR"), "fieldname": "net_mrr", "fieldtype": "Currency", "width": 120},
-        {"label": _("Net Logo Growth"), "fieldname": "net_logo_growth", "fieldtype": "Int", "width": 140},
+        {"label": _("New Service Revenue"), "fieldname": "new_mrr", "fieldtype": "Currency", "width": 170},
+        {"label": _("Expansion Revenue"), "fieldname": "expansion_mrr", "fieldtype": "Currency", "width": 160},
+        {"label": _("Churn Revenue"), "fieldname": "churn_mrr", "fieldtype": "Currency", "width": 150},
+        {"label": _("Net Revenue"), "fieldname": "net_mrr", "fieldtype": "Currency", "width": 130},
+        {"label": _("Net Account Growth"), "fieldname": "net_logo_growth", "fieldtype": "Int", "width": 160},
     ]
 
     data = []
@@ -34,9 +34,9 @@ def execute(filters=None):
         "data": {
             "labels": [item["month"] for item in data],
             "datasets": [
-                {"name": _("New Customers"), "values": [item["new_customers"] for item in data]},
-                {"name": _("Churned Customers"), "values": [item["churned_customers"] for item in data]},
-                {"name": _("Net MRR"), "values": [flt(item["net_mrr"]) for item in data]},
+                {"name": _("New Service Accounts"), "values": [item["new_customers"] for item in data]},
+                {"name": _("Churned Accounts"), "values": [item["churned_customers"] for item in data]},
+                {"name": _("Net Revenue"), "values": [flt(item["net_mrr"]) for item in data]},
             ],
         },
         "type": "axis-mixed",
@@ -46,10 +46,10 @@ def execute(filters=None):
 
     summary = snapshot["summary"]
     report_summary = [
-        {"label": _("Active Customers"), "value": summary["active_customers"], "indicator": "Green"},
-        {"label": _("Active MRR"), "value": summary["active_mrr"], "indicator": "Blue", "datatype": "Currency"},
-        {"label": _("Net New MRR"), "value": summary["net_new_mrr"], "indicator": "Green", "datatype": "Currency"},
-        {"label": _("Logo Churn Rate"), "value": summary["logo_churn_rate"], "indicator": "Red", "datatype": "Percent"},
+        {"label": _("Active Service Accounts"), "value": summary["active_customers"], "indicator": "Green"},
+        {"label": _("Active Service Revenue"), "value": summary["active_mrr"], "indicator": "Blue", "datatype": "Currency"},
+        {"label": _("Net New Revenue"), "value": summary["net_new_mrr"], "indicator": "Green", "datatype": "Currency"},
+        {"label": _("Account Churn Rate"), "value": summary["logo_churn_rate"], "indicator": "Red", "datatype": "Percent"},
     ]
 
     return columns, data, None, chart, report_summary

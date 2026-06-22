@@ -18,7 +18,7 @@ frappe.query_reports["User Growth Overview"] = {
         if (!data) {
             return value;
         }
-        if (["Net MRR", "Churn MRR"].includes(column.label)) {
+        if (["Net Revenue", "Churn Revenue"].includes(column.label)) {
             const numeric = Number(data[column.fieldname] || 0);
             const color = numeric < 0 ? "var(--red-600)" : "var(--green-700)";
             return `<span style="color:${color};font-weight:600">${value}</span>`;

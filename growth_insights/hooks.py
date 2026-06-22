@@ -1,7 +1,7 @@
 app_name = "growth_insights"
-app_title = "Growth Insights"
+app_title = "Zhige Energy Ops"
 app_publisher = "Growth Insights Team"
-app_description = "User lifecycle tracking, growth reporting, and executive dashboard for Frappe."
+app_description = "Battery swapping service lifecycle tracking, operations reporting, and executive dashboard for Frappe."
 app_email = "hello@example.com"
 app_license = "MIT"
 
@@ -12,7 +12,7 @@ app_include_css = [
 ]
 
 doctype_js = {
-    "Customer Lifecycle Event": "public/js/customer_lifecycle_event.js"
+    "Energy Service Lifecycle Event": "public/js/customer_lifecycle_event.js"
 }
 
 fixtures = [

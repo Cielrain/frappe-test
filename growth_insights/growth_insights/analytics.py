@@ -4,7 +4,7 @@ import frappe
 from frappe.utils import add_months, flt, get_first_day, getdate, nowdate
 
 
-LIFECYCLE_DOCTYPE = "Customer Lifecycle Event"
+LIFECYCLE_DOCTYPE = "Energy Service Lifecycle Event"
 ACTIVE_EVENTS = {"Signup", "Activation", "Reactivation", "Expansion"}
 NEW_LOGO_EVENTS = {"Signup", "Activation", "Reactivation"}
 
@@ -32,10 +32,14 @@ def get_events(start_date=None, end_date=None):
             "customer_name",
             "event_type",
             "event_date",
-            "customer_segment",
-            "plan",
+            "service_object_type",
+            "service_plan",
             "mrr",
-            "seats",
+            "monthly_swap_quota",
+            "vehicle_type",
+            "battery_model",
+            "station_name",
+            "cabinet_count",
             "region",
             "city",
             "industry",
@@ -100,7 +104,7 @@ def build_growth_snapshot(start_date=None, end_date=None):
                 "mrr": 0,
                 "customer_name": event.customer_name,
                 "region": event.region,
-                "customer_segment": event.customer_segment,
+                "customer_segment": event.service_object_type,
             },
         )
 
@@ -132,7 +136,7 @@ def build_growth_snapshot(start_date=None, end_date=None):
             {
                 "customer_name": event.customer_name,
                 "region": event.region,
-                "customer_segment": event.customer_segment,
+                "customer_segment": event.service_object_type,
                 "event_type": event.event_type,
             }
         )

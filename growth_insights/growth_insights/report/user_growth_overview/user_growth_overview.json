@@ -15,7 +15,7 @@
  "name": "User Growth Overview",
  "owner": "Administrator",
  "prepared_report": 0,
- "ref_doctype": "Customer Lifecycle Event",
+ "ref_doctype": "Energy Service Lifecycle Event",
  "report_name": "User Growth Overview",
  "report_type": "Script Report",
  "roles": [
