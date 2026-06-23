@@ -29,6 +29,29 @@ bench --site <site-name> migrate
 bench --site <site-name> clear-cache
 ```
 
+If a previous install attempt failed part-way through, check whether the app is
+already installed on the site:
+
+```bash
+bench --site <site-name> list-apps
+```
+
+If `growth_insights` appears in that list, uninstall it first:
+
+```bash
+bench --site <site-name> uninstall-app growth_insights
+```
+
+Then remove the cloned app and install again:
+
+```bash
+bench remove-app growth_insights
+bench get-app https://github.com/Cielrain/frappe-test.git
+bench --site <site-name> install-app growth_insights
+bench --site <site-name> migrate
+bench --site <site-name> clear-cache
+```
+
 Start your bench if it is not already running:
 
 ```bash
@@ -38,7 +61,7 @@ bench start
 Then open the app in your browser:
 
 ```text
-http://127.0.0.1:8000/desk/growth-insights
+http://127.0.0.1:8000/app/growth-insights
 ```
 
 If your bench uses a different port, replace `8000` with that port. If you are
@@ -77,7 +100,7 @@ Direct routes:
 If you are reviewing the Docker preview environment prepared for this submission, use:
 
 ```text
-URL: http://127.0.0.1:8000/desk/growth-insights
+URL: http://127.0.0.1:8000/app/growth-insights
 User: Administrator
 Password: admin
 ```
@@ -91,9 +114,9 @@ means "this computer", so it only works for the person running Frappe locally.
 
 For another user to access the app, choose one of these options:
 
-- Local setup: ask them to follow the install steps above on their own machine, then open `http://127.0.0.1:8000/desk/growth-insights` on their machine.
-- Same network: run Frappe on a machine reachable from your LAN, then share a LAN URL such as `http://192.168.x.x:8000/desk/growth-insights`.
-- Hosted deployment: deploy the Frappe site to a server, then share the real domain, for example `https://your-domain.com/desk/growth-insights`.
+- Local setup: ask them to follow the install steps above on their own machine, then open `http://127.0.0.1:8000/app/growth-insights` on their machine.
+- Same network: run Frappe on a machine reachable from your LAN, then share a LAN URL such as `http://192.168.x.x:8000/app/growth-insights`.
+- Hosted deployment: deploy the Frappe site to a server, then share the real domain, for example `https://your-domain.com/app/growth-insights`.
 - Temporary demo: use a tunnel such as ngrok or Cloudflare Tunnel, then share the generated public URL.
 
 ## Notes
