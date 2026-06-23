@@ -10,65 +10,143 @@ It delivers:
 
 ## Install
 
-Use these steps when you want to run the app in your own Frappe bench. The
-`127.0.0.1` URLs in this README are local preview URLs: they only work on the
-computer where Frappe is running.
+This is a Frappe app. It is not a program that opens by double-clicking this
+GitHub repository. You must install it inside a Frappe bench first.
 
-Prerequisites:
+If you are new to Frappe, read these names before copying commands:
 
-- A working Frappe bench environment.
-- An existing Frappe site, for example one created with `bench new-site <site-name>`.
-- Frappe v15 or newer is recommended. The app has also been smoke-tested in a Frappe Docker preview environment.
-- Access to this GitHub repository. If the repository is private, the installer needs GitHub permission or a configured token/SSH credential.
+- **bench**: the command-line tool used to create and run Frappe projects.
+- **frappe-bench**: a folder created by `bench init`. Your folder can have a
+  different name, but this README uses `frappe-bench` as the example.
+- **site**: one Frappe website/database inside the bench. This README uses
+  `growth.localhost` as the example site name.
+- **app**: this repository, installed into the site with the app name
+  `growth_insights`.
+
+The `127.0.0.1` URLs in this README are local preview URLs. They only work on
+the computer where Frappe is running.
+
+### Before You Start
+
+Use a terminal where the `bench` command works. For first-time setup, follow the
+official Frappe installation guide first:
+
+https://docs.frappe.io/framework/user/en/installation
+
+Check whether bench is installed:
+
+```bash
+bench --version
+```
+
+If that command says `bench` was not found, install Frappe/Bench first, then
+come back to this README.
+
+### Option A: You Already Have A Bench
+
+Use this option if you already have a folder like `frappe-bench` with `apps`,
+`sites`, `logs`, and `config` inside it.
+
+Go into your bench folder. Replace `/path/to/frappe-bench` with the real folder
+path on your computer:
+
+```bash
+cd /path/to/frappe-bench
+```
+
+If your bench folder is literally named `frappe-bench` and you are already in
+the folder that contains it, this also works:
 
 ```bash
 cd frappe-bench
+```
+
+Check which sites already exist:
+
+```bash
+ls sites
+```
+
+Choose the site you want to use. In the commands below, replace
+`growth.localhost` with your real site name.
+
+Install the app:
+
+```bash
 bench get-app https://github.com/Cielrain/frappe-test.git
-bench --site <site-name> install-app growth_insights
-bench --site <site-name> migrate
-bench --site <site-name> clear-cache
+bench --site growth.localhost install-app growth_insights
+bench --site growth.localhost migrate
+bench --site growth.localhost clear-cache
+bench use growth.localhost
 ```
 
-If a previous install attempt failed part-way through, check whether the app is
-already installed on the site:
-
-```bash
-bench --site <site-name> list-apps
-```
-
-If `growth_insights` appears in that list, uninstall it first:
-
-```bash
-bench --site <site-name> uninstall-app growth_insights
-```
-
-Then remove the cloned app and install again:
-
-```bash
-bench remove-app growth_insights
-bench get-app https://github.com/Cielrain/frappe-test.git
-bench --site <site-name> install-app growth_insights
-bench --site <site-name> migrate
-bench --site <site-name> clear-cache
-```
-
-Start your bench if it is not already running:
+Start Frappe:
 
 ```bash
 bench start
 ```
 
-Then open the app in your browser:
+Open this URL in your browser:
 
 ```text
 http://127.0.0.1:8000/app/growth-insights
 ```
 
-If your bench uses a different port, replace `8000` with that port. If you are
-running Frappe on a server or VM, replace `127.0.0.1` with the server hostname,
-domain, or IP address.
+If your bench uses a different port, replace `8000` with that port. If Frappe is
+running on a server or virtual machine, replace `127.0.0.1` with that server's
+hostname, domain, or IP address.
 
-Expected result:
+### Option B: You Do Not Have A Bench Yet
+
+Use this option only after the official Frappe installation guide is complete
+and `bench --version` works.
+
+Create a new bench folder:
+
+```bash
+bench init frappe-bench --frappe-branch version-15
+cd frappe-bench
+```
+
+Create a new site. This command asks you to set an Administrator password.
+Remember that password because you need it to log in:
+
+```bash
+bench new-site growth.localhost
+bench use growth.localhost
+```
+
+Install this app into the new site:
+
+```bash
+bench get-app https://github.com/Cielrain/frappe-test.git
+bench --site growth.localhost install-app growth_insights
+bench --site growth.localhost migrate
+bench --site growth.localhost clear-cache
+```
+
+Start Frappe:
+
+```bash
+bench start
+```
+
+Open this URL in your browser:
+
+```text
+http://127.0.0.1:8000/app/growth-insights
+```
+
+Log in with:
+
+```text
+User: Administrator
+Password: the Administrator password you set during bench new-site
+```
+
+### Expected Result
+
+After installation, you should see these things:
 
 - The **Growth Insights** workspace opens in Frappe Desk.
 - The workspace shows shortcuts for **Lifecycle Events**, **Growth Report**, and
@@ -80,11 +158,46 @@ Expected result:
 
 The app seeds readable demo lifecycle data during installation. This data is
 created in the database of the Frappe site where the app is installed; it is not
-synced from the maintainer's local computer. To seed or refresh demo data later,
-run:
+synced from the maintainer's local computer.
+
+To seed or refresh demo data later, run this from inside your bench folder:
 
 ```bash
-bench --site <site-name> execute growth_insights.install.seed_mock_data
+bench --site growth.localhost execute growth_insights.install.seed_mock_data
+```
+
+Replace `growth.localhost` with your real site name if you used a different one.
+
+### If Installation Failed Once
+
+If an earlier install attempt failed part-way through, first go into your bench
+folder:
+
+```bash
+cd /path/to/frappe-bench
+```
+
+Check whether the app is already installed on your site:
+
+```bash
+bench --site growth.localhost list-apps
+```
+
+If `growth_insights` appears in that list, uninstall it:
+
+```bash
+bench --site growth.localhost uninstall-app growth_insights
+```
+
+Then remove the cloned app and install again:
+
+```bash
+bench remove-app growth_insights
+bench get-app https://github.com/Cielrain/frappe-test.git
+bench --site growth.localhost install-app growth_insights
+bench --site growth.localhost migrate
+bench --site growth.localhost clear-cache
+bench use growth.localhost
 ```
 
 ## Use
@@ -132,7 +245,7 @@ For another user to access the app, choose one of these options:
 ## Notes
 
 - This is a Frappe custom app, not a standalone static website. It must be installed into a Frappe bench site.
-- If the app installs but the workspace does not appear, run `bench --site <site-name> migrate` and `bench --site <site-name> clear-cache`, then refresh Desk.
+- If the app installs but the workspace does not appear, run `bench --site growth.localhost migrate` and `bench --site growth.localhost clear-cache`, then refresh Desk. Replace `growth.localhost` with your real site name.
 - If demo data is missing, run the seed command above.
 - If `bench get-app` fails before installation starts, verify that the repository is reachable from the machine running bench.
 - If login fails, use that site's own Administrator password or a System Manager account; the `admin` password only applies to the prepared Docker preview environment.
