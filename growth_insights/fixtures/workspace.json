@@ -1,6 +1,7 @@
 [
  {
   "charts": [],
+  "app": "growth_insights",
   "content": "[{\"id\":\"growth_header\",\"type\":\"header\",\"data\":{\"text\":\"Zhige Energy Ops\"}},{\"id\":\"growth_shortcuts\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Lifecycle Events\"}},{\"id\":\"growth_report\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Growth Report\"}},{\"id\":\"growth_dashboard\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Operations Dashboard\"}},{\"id\":\"growth_links\",\"type\":\"card\",\"data\":{\"card_name\":\"Growth Insights\"}}]",
   "creation": "2026-06-22 00:00:00.000000",
   "custom_blocks": [],

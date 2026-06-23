@@ -6,6 +6,10 @@ app_email = "hello@example.com"
 app_license = "MIT"
 
 after_install = "growth_insights.install.after_install"
+after_migrate = "growth_insights.install.ensure_navigation"
+
+app_home = "/desk/growth-insights"
+home_page = "desk/growth-insights"
 
 app_include_css = [
     "/assets/growth_insights/css/growth_insights.css"

@@ -52,7 +52,167 @@ PLAN_QUOTA = {
 
 
 def after_install():
+    ensure_navigation()
     seed_mock_data()
+
+
+def ensure_navigation():
+    ensure_workspace()
+    ensure_workspace_sidebar()
+    ensure_return_links()
+    ensure_desktop_icon()
+    frappe.db.set_default("desktop:home_page", "workspace")
+    frappe.cache.delete_key("bootinfo")
+    frappe.cache.delete_key("desktop_icons")
+    frappe.cache.delete_value("home_page")
+    frappe.db.commit()
+
+
+def ensure_workspace():
+    if not frappe.db.exists("Workspace", "Growth Insights"):
+        return
+
+    frappe.db.set_value(
+        "Workspace",
+        "Growth Insights",
+        {
+            "app": "growth_insights",
+            "is_hidden": 0,
+            "public": 1,
+            "module": "Growth Insights",
+        },
+        update_modified=False,
+    )
+
+
+def ensure_workspace_sidebar():
+    if not frappe.db.exists("Workspace", "Growth Insights"):
+        return
+
+    sidebar = (
+        frappe.get_doc("Workspace Sidebar", "Growth Insights")
+        if frappe.db.exists("Workspace Sidebar", "Growth Insights")
+        else frappe.new_doc("Workspace Sidebar")
+    )
+    sidebar.title = "Growth Insights"
+    sidebar.module = "Growth Insights"
+    sidebar.app = "growth_insights"
+    sidebar.header_icon = "chart"
+
+    required_items = [
+        {
+            "label": "Home",
+            "link_to": "Growth Insights",
+            "link_type": "Workspace",
+            "type": "Link",
+            "icon": "home",
+        },
+        {
+            "label": "Lifecycle Events",
+            "link_to": "Energy Service Lifecycle Event",
+            "link_type": "DocType",
+            "type": "Link",
+            "icon": "list",
+        },
+        {
+            "label": "Reports",
+            "type": "Section Break",
+        },
+        {
+            "label": "User Growth Overview",
+            "link_to": "User Growth Overview",
+            "link_type": "Report",
+            "type": "Link",
+            "icon": "table",
+            "child": 1,
+        },
+        {
+            "label": "Zhige Energy Operations Dashboard",
+            "link_to": "user-growth-dashboard",
+            "link_type": "Page",
+            "type": "Link",
+            "icon": "panel-top",
+        },
+    ]
+
+    existing = {_sidebar_item_key(item) for item in sidebar.get("items", [])}
+
+    for item in required_items:
+        key = _sidebar_item_key(item)
+        if key in existing:
+            continue
+        sidebar_item = frappe.new_doc("Workspace Sidebar Item")
+        sidebar_item.update(item)
+        sidebar.append("items", sidebar_item)
+
+    sidebar.save(ignore_permissions=True)
+
+
+def ensure_return_links():
+    for sidebar_name in ["Users"]:
+        if frappe.db.exists("Workspace Sidebar", sidebar_name):
+            ensure_sidebar_link(
+                sidebar_name,
+                {
+                    "label": "Growth Insights",
+                    "link_to": "Growth Insights",
+                    "link_type": "Workspace",
+                    "type": "Link",
+                    "icon": "wallpaper",
+                },
+            )
+
+
+def ensure_sidebar_link(sidebar_name, item):
+    sidebar = frappe.get_doc("Workspace Sidebar", sidebar_name)
+    existing = {_sidebar_item_key(sidebar_item) for sidebar_item in sidebar.get("items", [])}
+    if _sidebar_item_key(item) in existing:
+        return
+
+    sidebar_item = frappe.new_doc("Workspace Sidebar Item")
+    sidebar_item.update(item)
+    sidebar.append("items", sidebar_item)
+    sidebar.save(ignore_permissions=True)
+
+
+def _sidebar_item_key(item):
+    if isinstance(item, dict):
+        item_type = item.get("type")
+        label = item.get("label")
+        link_type = item.get("link_type")
+        link_to = item.get("link_to")
+    else:
+        item_type = item.type
+        label = item.label
+        link_type = item.link_type
+        link_to = item.link_to
+
+    if item_type == "Section Break":
+        return (item_type, label)
+
+    return (link_type, link_to or label)
+
+
+def ensure_desktop_icon():
+    if not frappe.db.exists("Workspace Sidebar", "Growth Insights"):
+        return
+
+    icon = (
+        frappe.get_doc("Desktop Icon", "Growth Insights")
+        if frappe.db.exists("Desktop Icon", "Growth Insights")
+        else frappe.new_doc("Desktop Icon")
+    )
+    icon.label = "Growth Insights"
+    icon.icon_type = "Link"
+    icon.link_type = "Workspace Sidebar"
+    icon.link_to = "Growth Insights"
+    icon.app = "growth_insights"
+    icon.hidden = 0
+    icon.standard = 1
+    if icon.is_new():
+        icon.insert(ignore_permissions=True, ignore_if_duplicate=True)
+    else:
+        icon.save(ignore_permissions=True)
 
 
 def seed_mock_data():
