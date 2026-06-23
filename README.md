@@ -68,6 +68,16 @@ If your bench uses a different port, replace `8000` with that port. If you are
 running Frappe on a server or VM, replace `127.0.0.1` with the server hostname,
 domain, or IP address.
 
+Expected result:
+
+- The **Growth Insights** workspace opens in Frappe Desk.
+- The workspace shows shortcuts for **Lifecycle Events**, **Growth Report**, and
+  **Operations Dashboard**.
+- The **Energy Service Lifecycle Event** list contains generated demo records
+  with `ZE-` service account IDs.
+- The dashboard route `/app/user-growth-dashboard` loads the operations
+  dashboard with the seeded demo data.
+
 The app seeds readable demo lifecycle data during installation. This data is
 created in the database of the Frappe site where the app is installed; it is not
 synced from the maintainer's local computer. To seed or refresh demo data later,
@@ -124,8 +134,13 @@ For another user to access the app, choose one of these options:
 - This is a Frappe custom app, not a standalone static website. It must be installed into a Frappe bench site.
 - If the app installs but the workspace does not appear, run `bench --site <site-name> migrate` and `bench --site <site-name> clear-cache`, then refresh Desk.
 - If demo data is missing, run the seed command above.
+- If `bench get-app` fails before installation starts, verify that the repository is reachable from the machine running bench.
+- If login fails, use that site's own Administrator password or a System Manager account; the `admin` password only applies to the prepared Docker preview environment.
 
 ## Development
+
+This section is for maintainers of this GitHub repository. Installers do not need
+to run these commands.
 
 This repository is a standalone Frappe app source tree. If you created it outside a bench, copy or clone `growth_insights` into `frappe-bench/apps`, then install it on a site.
 
