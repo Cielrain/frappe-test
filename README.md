@@ -10,6 +10,10 @@ It delivers:
 
 ## Install
 
+Use these steps when you want to run the app in your own Frappe bench. The
+`127.0.0.1` URLs in this README are local preview URLs: they only work on the
+computer where Frappe is running.
+
 Prerequisites:
 
 - A working Frappe bench environment.
@@ -25,6 +29,22 @@ bench --site <site-name> migrate
 bench --site <site-name> clear-cache
 ```
 
+Start your bench if it is not already running:
+
+```bash
+bench start
+```
+
+Then open the app in your browser:
+
+```text
+http://127.0.0.1:8000/desk/growth-insights
+```
+
+If your bench uses a different port, replace `8000` with that port. If you are
+running Frappe on a server or VM, replace `127.0.0.1` with the server hostname,
+domain, or IP address.
+
 The app seeds mock lifecycle data during installation. To seed or refresh demo data later, run:
 
 ```bash
@@ -34,7 +54,9 @@ bench --site <site-name> execute growth_insights.install.seed_mock_data
 ## Use
 
 - Log in to Frappe Desk with an Administrator or System Manager account.
-- Open the **Growth Insights** workspace in Frappe Desk.
+- New system users are routed to the **Growth Insights** workspace by default.
+- You can also open **Growth Insights** from the Desk desktop or from the sidebar navigation.
+- If you are in the Frappe Framework **Users** workspace, use the **Growth Insights** link in the left sidebar to return to the app.
 - Use **Lifecycle Events** to inspect or edit rider, fleet, and station lifecycle records.
 - Use **Growth Report** to review monthly signup, activation, reactivation, churn, expansion, and revenue movement.
 - Use **Operations Dashboard** to open the large-screen growth dashboard.
@@ -57,6 +79,18 @@ Password: admin
 ```
 
 For a fresh installation on another Frappe site, use that site's own Administrator password or any System Manager account. This app does not create a fixed login user.
+
+## Sharing With Other Users
+
+Do not share `http://127.0.0.1:8000/...` as a public access link. `127.0.0.1`
+means "this computer", so it only works for the person running Frappe locally.
+
+For another user to access the app, choose one of these options:
+
+- Local setup: ask them to follow the install steps above on their own machine, then open `http://127.0.0.1:8000/desk/growth-insights` on their machine.
+- Same network: run Frappe on a machine reachable from your LAN, then share a LAN URL such as `http://192.168.x.x:8000/desk/growth-insights`.
+- Hosted deployment: deploy the Frappe site to a server, then share the real domain, for example `https://your-domain.com/desk/growth-insights`.
+- Temporary demo: use a tunnel such as ngrok or Cloudflare Tunnel, then share the generated public URL.
 
 ## Notes
 
