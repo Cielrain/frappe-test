@@ -45,7 +45,10 @@ If your bench uses a different port, replace `8000` with that port. If you are
 running Frappe on a server or VM, replace `127.0.0.1` with the server hostname,
 domain, or IP address.
 
-The app seeds mock lifecycle data during installation. To seed or refresh demo data later, run:
+The app seeds readable demo lifecycle data during installation. This data is
+created in the database of the Frappe site where the app is installed; it is not
+synced from the maintainer's local computer. To seed or refresh demo data later,
+run:
 
 ```bash
 bench --site <site-name> execute growth_insights.install.seed_mock_data
@@ -53,8 +56,9 @@ bench --site <site-name> execute growth_insights.install.seed_mock_data
 
 ## Use
 
-- Log in to Frappe Desk with an Administrator or System Manager account.
-- New system users are routed to the **Growth Insights** workspace by default.
+- Log in to Frappe Desk with an Administrator, System Manager, Sales Manager, or Sales User account.
+- For a new non-admin user, assign at least the **Sales User** role before asking them to use the app.
+- New system users with access to the workspace are routed to **Growth Insights** by default.
 - You can also open **Growth Insights** from the Desk desktop or from the sidebar navigation.
 - If you are in the Frappe Framework **Users** workspace, use the **Growth Insights** link in the left sidebar to return to the app.
 - Use **Lifecycle Events** to inspect or edit rider, fleet, and station lifecycle records.
